@@ -5,62 +5,64 @@
 
           <el-submenu index="1">
             <template slot="title">
-              <i class="el-icon-setting"></i>
-              <span>系统设置</span>
+              <!-- <i class="el-icon-setting"></i> -->
+              <span>基本信息管理</span>
             </template>
             <el-menu-item-group>
               <!--<template slot="title">分组一</template>-->
-              <el-menu-item index='/Index/userManangement'>用户管理</el-menu-item>
+              <el-menu-item index='/Index/userManangement'>商品管理</el-menu-item>
+              <el-menu-item index='/Index/userManangement'>厂商管理</el-menu-item>
+              <el-menu-item index='/Index/userManangement'>分类管理</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
 
           <el-submenu index="7">
           <template slot="title">
-            <i class="el-icon-rank"></i>
-            <span>基本信息管理</span>
+            <!-- <i class="el-icon-rank"></i> -->
+            <span>库存管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index='/Index/supplier'>厂商管理</el-menu-item>
-            <el-menu-item>商品管理</el-menu-item>
-            <el-menu-item>分类管理</el-menu-item>
+            <el-menu-item index='/Index/supplier'>采购单管理</el-menu-item>
+            <el-menu-item>销售单管理</el-menu-item>
+            <el-menu-item>查看库存</el-menu-item>
 
           </el-menu-item-group>
           </el-submenu>
 
           <el-submenu index="2">
           <template slot="title">
-            <i class="el-icon-rank"></i>
-            <span>库存管理</span>
+            <!-- <i class="el-icon-rank"></i> -->
+            <span>系统管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index='/Index/supplier'>进货管理</el-menu-item>
-            <el-menu-item index='/Index/supplier'>进货管理</el-menu-item>
+            <el-menu-item index='/Index/supplier'>用户管理</el-menu-item>
+            <el-menu-item index='/Index/supplier'>权限管理</el-menu-item>
           </el-menu-item-group>
           </el-submenu>
-
+<!-- 
           <el-submenu index="3">
             <template slot="title">
               <i class="el-icon-goods"></i>
-              <span>商品管理</span>
+              <span>用户管理</span>
             </template>
             <el-menu-item-group>
               <el-menu-item index='/Index/goods'>商品管理</el-menu-item>
             </el-menu-item-group>
-          </el-submenu>
+          </el-submenu> -->
 
 
-          <el-submenu index="4">
+          <!-- <el-submenu index="4">
             <template slot="title">
               <i class="el-icon-menu"></i>
               <span>分类管理</span>
             </template>
             <el-menu-item-group>
-              <!--<template slot="title">分组一</template>-->
+              <template slot="title">分组一</template>
               <el-menu-item index='/Index/categories'>分类管理</el-menu-item>
             </el-menu-item-group>
-          </el-submenu>
+          </el-submenu> -->
 
-
+<!-- 
           <el-submenu index="6">
             <template slot="title">
               <i class="el-icon-sold-out"></i>
@@ -78,10 +80,10 @@
               <span>查看报表</span>
             </template>
             <el-menu-item-group>
-              <!--<template slot="title">分组一</template>-->
+              <template slot="title">分组一</template>
               <el-menu-item>查看报表</el-menu-item>
             </el-menu-item-group>
-          </el-submenu>
+          </el-submenu> -->
           <br><br><br><br><br>
         </el-menu>
      
