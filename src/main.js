@@ -4,17 +4,13 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-
-import axios from 'axios'
-axios.defaults.withCredentials = true;  //允许axios请求携带cookie等凭证
-import qs from 'qs'
-
+import 'font-awesome/css/font-awesome.css'
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios'
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-
-Vue.prototype.$axios = axios    //全局注册，使用方法为:this.$axios
-Vue.prototype.qs = qs
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
