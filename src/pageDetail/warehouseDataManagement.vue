@@ -2,10 +2,10 @@
   <div>
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="库房名称:">
+        <el-form-item label="厂商名称:">
           <el-input></el-input>
         </el-form-item>
-        <el-form-item label="库房编号:">
+        <el-form-item label="厂商编号:">
           <el-input></el-input>
         </el-form-item>
         <el-form-item label="是否禁用:">
@@ -29,17 +29,17 @@
         </template>
       </el-table-column>
       <el-table-column label="编号" prop="name"></el-table-column>
-      <el-table-column label="库房名称" prop="name"></el-table-column>
+      <el-table-column label="厂商名称" prop="name"></el-table-column>
       <el-table-column label="是否禁用" prop="name"></el-table-column>
       <el-table-column label="创建人" prop="name"></el-table-column>
       <el-table-column label="所在地区" prop="name"></el-table-column>
     </el-table>
-    <el-dialog title="新增库房" :visible.sync="dialogVisibleAdd" width="20%" center>
+    <el-dialog title="新增厂商" :visible.sync="dialogVisibleAdd" width="20%" center>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="库房名称:">
+        <el-form-item label="厂商名称:">
           <el-input></el-input>
         </el-form-item>
-        <el-form-item label="库房地址:">
+        <el-form-item label="厂商地址:">
           <el-input></el-input>
         </el-form-item>
         <el-form-item label="详细地址:">
@@ -57,7 +57,7 @@
         <el-button >取消</el-button>
       </el-row>
     </el-dialog>
-    <el-dialog title="库房详情" :visible.sync="dialogVisibleDetail" width="30%">
+    <el-dialog title="厂商详情" :visible.sync="dialogVisibleDetail" width="30%">
       <span></span>
     </el-dialog>
   </div>
