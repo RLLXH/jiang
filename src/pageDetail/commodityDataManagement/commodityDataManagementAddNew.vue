@@ -49,6 +49,8 @@
   </div>
 </template>
 <script>
+import axios from "../../api/axios.js";
+import {goodsInsert} from "../../api/address.js";
 export default {
   data() {
     return {

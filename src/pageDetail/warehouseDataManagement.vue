@@ -2,17 +2,20 @@
   <div>
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="厂商名称:">
-          <el-input></el-input>
+        <el-form-item label="供应商名称:">
+          <el-input v-model="theQuery.supplierName"></el-input>
         </el-form-item>
-        <el-form-item label="厂商编号:">
-          <el-input></el-input>
-        </el-form-item>
-        <el-form-item label="是否禁用:">
-          <el-input></el-input>
-        </el-form-item>
+        <!-- <el-form-item label="库房编号:">
+          <el-input v-model="theQuery.storageRoomCode"></el-input>
+        </el-form-item>-->
+        <!-- <el-form-item label="是否禁用:" prop="prohibit">
+          <el-select v-model="theQuery.prohibit">
+            <el-option :value="true" label="是"></el-option>
+            <el-option :value="false" label="否"></el-option>
+          </el-select>
+        </el-form-item>-->
         <el-form-item label=" ">
-          <el-button>查询</el-button>
+          <el-button @click="getList">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -21,74 +24,185 @@
     </el-row>
     <el-table :data="dataList" style="width: 100%" border>
       <el-table-column label="序号" type="index" width="80"></el-table-column>
-      <el-table-column label="操作" width="80">
-        <template>
+      <el-table-column label="操作" width="160">
+        <template slot-scope="scope">
           <div>
-            <el-button type="text" @click="detailBtn">查看</el-button>
+            <el-button type="text" @click="detailBtn(scope.row)">修改</el-button>
+            <el-button type="text" @click="deleteBtn(scope.row)">删除</el-button>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="编号" prop="name"></el-table-column>
-      <el-table-column label="厂商名称" prop="name"></el-table-column>
-      <el-table-column label="是否禁用" prop="name"></el-table-column>
-      <el-table-column label="创建人" prop="name"></el-table-column>
-      <el-table-column label="所在地区" prop="name"></el-table-column>
+      <el-table-column label="供应商名" prop="supplierName"></el-table-column>
+      <el-table-column label="供应商地址" prop="supplierAddress"></el-table-column>
+      <!-- <el-table-column label="供应商评价" prop="supplierEvaluate"></el-table-column> -->
+      <el-table-column label="供应商电话" prop="supplierPhone"></el-table-column>
+      <el-table-column label="供应商官网" prop="supplierWeb"></el-table-column>
     </el-table>
-    <el-dialog title="新增厂商" :visible.sync="dialogVisibleAdd" width="20%" center>
-      <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="厂商名称:">
-          <el-input></el-input>
+    <el-dialog title="新增库房" :visible.sync="dialogVisibleAdd" width="60%" center>
+      <el-form
+        label-position="right"
+        label-width="100px"
+        :inline="true"
+        :model="postData"
+        ref="postData"
+        :rules="rules"
+      >
+        <el-form-item label="供应商名:" prop="supplierName">
+          <el-input v-model="postData.supplierName"></el-input>
         </el-form-item>
-        <el-form-item label="厂商地址:">
-          <el-input></el-input>
+        <el-form-item label="供应商地址:" prop="supplierAddress">
+          <el-input v-model="postData.supplierAddress"></el-input>
         </el-form-item>
-        <el-form-item label="详细地址:">
-          <el-input></el-input>
+        <el-form-item label="供应商评价:" prop="supplierEvaluate">
+          <el-input v-model="postData.supplierEvaluate"></el-input>
         </el-form-item>
-        <el-form-item label="联系人:">
-          <el-input></el-input>
+        <el-form-item label="供应商电话:" prop="supplierPhone">
+          <el-input v-model="postData.supplierPhone"></el-input>
         </el-form-item>
-        <el-form-item label="电话:">
-          <el-input></el-input>
+        <el-form-item label="供应商官网:" prop="supplierWeb">
+          <el-input v-model="postData.supplierWeb"></el-input>
         </el-form-item>
       </el-form>
       <el-row class="dialoBtnBox">
-        <el-button >提交</el-button>
-        <el-button >取消</el-button>
+        <el-button @click="postBtn('postData')">提交</el-button>
+        <el-button @click="postB">取消</el-button>
       </el-row>
     </el-dialog>
-    <el-dialog title="厂商详情" :visible.sync="dialogVisibleDetail" width="30%">
-      <span></span>
+    <el-dialog title="修改库房" :visible.sync="dialogVisibleDetail" width="60%">
+      <el-form
+        label-position="right"
+        label-width="100px"
+        :inline="true"
+        :model="updateData"
+        ref="updateData"
+        :rules="rules"
+      >
+       <el-form-item label="供应商名:" prop="supplierName">
+          <el-input v-model="updateData.supplierName"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商地址:" prop="supplierAddress">
+          <el-input v-model="updateData.supplierAddress"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商评价:" prop="supplierEvaluate">
+          <el-input v-model="updateData.supplierEvaluate"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商电话:" prop="supplierPhone">
+          <el-input v-model="updateData.supplierPhone"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商官网:" prop="supplierWeb">
+          <el-input v-model="updateData.supplierWeb"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-row class="dialoBtnBox">
+        <el-button @click="updateBtn('updateData')">提交</el-button>
+        <el-button @click="updateB">取消</el-button>
+      </el-row>
     </el-dialog>
   </div>
 </template>
 <script>
+import axios from "../api/axios.js";
+import { supplierINsert, supplierSelect, supplierDelete,supplierUpdate} from "../api/address.js";
 export default {
   data() {
     return {
       dialogVisibleDetail: false,
       dialogVisibleAdd: false,
-      dataList: [
-        {
-          name: "奶粉"
-        }
-      ]
+      theQuery: {
+        pageNum: 1,
+        pageSize: 20,
+        supplierAddress: "",
+        supplierEvaluate: "",
+        supplierName: "",
+        supplierPhone: "",
+        supplierWeb: ""
+      },
+      updateData: {},
+      postData: {
+        supplierAddress: "",
+        supplierEvaluate: "",
+        supplierName: "",
+        supplierPhone: "",
+        supplierWeb: ""
+      },
+      dataList: [],
+      rules: {
+        supplierEvaluate: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        addrcontactsPersoness: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        createPerson: [{ required: true, message: "请输入", trigger: "blur" }],
+        addrephoness: [{ required: true, message: "请输入", trigger: "blur" }],
+        prohibit: [{ required: true, message: "请输入", trigger: "blur" }],
+        storageRoomCode: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        supplierName: [{ required: true, message: "请输入", trigger: "blur" }]
+      }
     };
   },
+  created() {
+    this.getList();
+  },
   methods: {
+    updateB() {
+      this.dialogVisibleDetail = false;
+    },
+    updateBtn(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          console.log(this.updateData,'121')
+          axios
+            .put(
+              supplierUpdate + "?id=" + this.updateData.id,
+              this.updateData
+            )
+            .then(data => {
+              this.$message.success("修改成功");
+              this.dialogVisibleDetail = false;
+              this.getList();
+            });
+        }
+      });
+    },
+    deleteBtn(row) {
+      axios.delete(supplierDelete+'?id='+row.id).then(data => {
+        this.$message.success("删除成功");
+        this.getList();
+      });
+    },
+    getList() {
+      axios.post(supplierSelect, this.theQuery).then(data => {
+        console.log(data);
+        this.dataList = data.content;
+      });
+    },
+    postB() {
+      this.dialogVisibleAdd = false;
+    },
+    //提交
+    postBtn(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          axios.post(supplierINsert, this.postData).then(data => {
+            this.$message.success("新增成功");
+            this.getList();
+            this.dialogVisibleAdd = false;
+          
+          });
+        }
+      });
+    },
     //新增
     AddnewBtn() {
       this.dialogVisibleAdd = true;
     },
     //详情
-    detailBtn() {
+    detailBtn(row) {
+      this.updateData = row;
       this.dialogVisibleDetail = true;
-    },
-    Btn() {
-      this.$router.push({
-        path: "/Index/Markey",
-        query: {}
-      });
     }
   }
 };
@@ -97,7 +211,7 @@ export default {
 .addBtn {
   margin: 10px 0px;
 }
-.dialoBtnBox{
-    text-align: center
+.dialoBtnBox {
+  text-align: center;
 }
 </style>

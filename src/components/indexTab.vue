@@ -1,6 +1,6 @@
 <template>
   <div class="all">
-    <div class="header">库房管理系统</div>
+    <div class="header">商品管理系统</div>
     <span>
       <el-breadcrumb class="breadBox">
         <el-breadcrumb-item> 当前位置：{{bread}}</el-breadcrumb-item>
