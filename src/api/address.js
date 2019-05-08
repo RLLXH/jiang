@@ -31,3 +31,7 @@ export const userUpdate='/user/update'//修改
 export const userDelete='/user/delete'//删除
 //采购管理
 export const purchaseIndert='/purchase/insert'//生成采购单
+export const purchaseSelect='/purchase/select'//采购单动态分页显示
+export const purchaseSelectDetail='/purchase/selectId'//获取采购单详情
+export const purchaseDelete='/purchase/delete'//删除 
+export const purchaseUpdate='/purchase/update'//更新采购单

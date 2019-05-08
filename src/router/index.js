@@ -27,6 +27,7 @@ import totalInventory from '../pageDetail/totalInventory.vue'
 import UserManagement from '../pageDetail/userManagement.vue'
 import userManagement1 from '../pageDetail/userManagement.1.vue'
 import commodityDataManagementDetail from '../pageDetail/commodityDataManagement/commodityDataManagementDetail.vue'
+import purchasingManageUpdate from '../pageDetail/purchasingManage/purchasingManageUpdate.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -142,6 +143,10 @@ export default new Router({
         path:'commodityDataManagementDetail',
         name:'商品详情',
         component:commodityDataManagementDetail
+      },{
+        path:'purchasingManageUpdate',
+        name:"采购更新",
+        component:purchasingManageUpdate
       }
 
       ]

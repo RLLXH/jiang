@@ -28,9 +28,9 @@
         </el-submenu>
         <el-submenu index="4">
           <template slot="title">
-            <span>查看订单</span>
+            <span>订单管理</span>
           </template>
-          <el-menu-item index="/Index/orderManagement">采购单</el-menu-item>
+          <el-menu-item index="/Index/PurchasingManage">采购单</el-menu-item>
           <el-menu-item index="/Index/returnsManagement">销售单</el-menu-item>
         </el-submenu>
         <el-submenu index="5">

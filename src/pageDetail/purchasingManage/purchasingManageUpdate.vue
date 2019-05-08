@@ -1,26 +1,36 @@
 <template>
   <div>
     <div>
-      <el-form label-position="right" label-width="100px" :inline="true">
+      <el-form
+        label-position="right"
+        label-width="100px"
+        :inline="true"
+        :model="detailData"
+        ref="detailData"
+        :rules="rules"
+      >
         <el-row>
           <el-col :span="8">
-            <el-form-item label="操作人员：">
-              <span>{{detailData.person}}</span>
+            <el-form-item label="操作人员：" prop="person">
+              <el-input v-model="detailData.person"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="订单编号：">
-              <span>{{detailData.purchaseCode}}</span>
+            <el-form-item label="订单编号：" prop="purchaseCode">
+              <el-input v-model="detailData.purchaseCode"></el-input>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="出库时间：">
-              <span>{{detailData.purchaseTime}}</span>
+            <el-form-item label="出库时间：" prop="purchaseTime">
+              <el-date-picker v-model="detailData.purchaseTime" type="date" placeholder="选择日期"></el-date-picker>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="是否出库：">
-              <span>{{detailData.storage?'是':'否'}}</span>
+            <el-form-item label="是否出库：" prop="storage">
+              <el-select placeholder="请输入信息" clearable v-model="detailData.storage">
+                <el-option :value="true" label="是"></el-option>
+                <el-option :value="false" label="否"></el-option>
+              </el-select>
             </el-form-item>
           </el-col>
         </el-row>
@@ -68,20 +78,39 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="数量" prop="goodsNumber"></el-table-column>
+      <el-table-column label="数量" prop="goodsNumber">
+        <template slot-scope="scope">
+          <div>
+            <el-input v-model="scope.row.goodsNumber"></el-input>
+          </div>
+        </template>
+      </el-table-column>
     </el-table>
-     <el-row class="btnBox">
-        
+  <el-row class="btnBox">
+        <el-button @click="postBtn('detailData')">提交</el-button>
         <el-button @click="back">返回</el-button>
       </el-row>
   </div>
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { purchaseSelectDetail } from "../../api/address.js";
+import { purchaseSelectDetail,purchaseUpdate } from "../../api/address.js";
 export default {
   data() {
     return {
+        rules: {
+        person: [
+          { required: true, message: "请选择", trigger: "change" }
+        ],
+          purchaseCode: [
+          { required: true, message: "请选择", trigger: "change" }
+        ],
+          purchaseTime: [
+          { required: true, message: "请选择", trigger: "change" }
+        ],
+          storage: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],},
       detailData: {},
       dataList: []
     };
@@ -90,8 +119,16 @@ export default {
     this.getDetail();
   },
   methods: {
-      back(){
+    back(){
       this.$router.go(-1);
+    },
+    postBtn(formName){
+         this.$refs[formName].validate(valid => {
+        if (valid) {
+          axios.put(purchaseUpdate,this.detailData).then(data=>{
+            this.$router.go(-1);
+          })
+        }})
     },
     getDetail() {
       axios
