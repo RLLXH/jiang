@@ -10,36 +10,38 @@
         :rules="rules"
       >
         <el-form-item label="商品编号:" prop="goodsCode">
-          <el-input v-model="postData.goodsCode"></el-input>
+          <span class="spanBox">{{postData.goodsCode}}</span>
         </el-form-item>
         <el-form-item label="商品类:" prop="categoryId">
-          <el-select placeholder="请输入信息" clearable v-model="postData.categoryId">
+          <span class="spanBox">{{postData.categoryId}}</span>
+          <!-- <el-select placeholder="请输入信息" clearable v-model="postData.categoryId">
+          
             <el-option
               v-for="(item,index) in categoryList"
               :key="index"
               :label="item.categoryName"
               :value="item.id"
             ></el-option>
-          </el-select>
+          </el-select> -->
         </el-form-item>
         <el-form-item label="商品生产日期:" prop="goodsDate">
-          <el-date-picker v-model="postData.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
+          <span class="spanBox">{{postData.goodsDate}}</span>
         </el-form-item>
         <el-form-item label="商品名称:" prop="goodsName">
-          <el-input v-model="postData.goodsName"></el-input>
+          <span class="spanBox">{{postData.goodsName}}</span>
         </el-form-item>
         <el-form-item label="商品单价:" prop="goodsPrice">
-          <el-input v-model="postData.goodsPrice"></el-input>
+          <span class="spanBox">{{postData.goodsPrice}}</span>
         </el-form-item>
         <el-form-item label="商品保质期:" prop="goodsShelfLife">
-          <el-input v-model="postData.goodsShelfLife"></el-input>
+          <span class="spanBox">{{postData.goodsShelfLife}}</span>
         </el-form-item>
         <el-form-item label="厂商ID:" prop="supplierId">
-          <el-input v-model="postData.supplierId"></el-input>
+          <span class="spanBox">{{postData.supplierId}}</span>
         </el-form-item>
       </el-form>
       <el-row class="btnBox">
-        <el-button @click="postBtn('postData')">提交</el-button>
+        <!-- <el-button @click="postBtn('postData')">提交</el-button> -->
         <el-button @click="backBtn">返回</el-button>
       </el-row>
     </div>
@@ -122,6 +124,11 @@ export default {
         data=>{
           console.log(data,'12')
           this.postData=data;
+          this.categoryList.map((v,k)=>{
+            if(this.postData.categoryId=v.id){
+              this.postData.categoryId=v.categoryName;
+            }
+          })
         }
       )
     }
@@ -185,5 +192,9 @@ export default {
 }
 .btnBox {
   text-align: center;
+}
+.spanBox{
+  width: 210px;
+  display: block;
 }
 </style>

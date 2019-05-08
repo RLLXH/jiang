@@ -3,13 +3,13 @@
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
         <el-form-item label="商品编号:">
-          <el-input></el-input>
+          <el-input v-model="theQuery.goodsCode"></el-input>
         </el-form-item>
         <el-form-item label="商品类别:">
-          <el-input></el-input>
+          <el-input v-model="theQuery.categoryName"></el-input>
         </el-form-item>
         <el-form-item label=" ">
-          <el-button>查询</el-button>
+          <el-button @click="getList">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -21,8 +21,8 @@
       <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <div>
-            <el-button type="text" @click="detailBtn">查看</el-button>
-            <el-button type="text" @click="detailBtn">编辑</el-button>
+            <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
+            <el-button type="text" @click="mobileBtn(scope.row.id)">编辑</el-button>
             <el-button type="text" @click="deleteBtn(scope.row.id)">删除</el-button>
           </div>
         </template>
@@ -31,7 +31,7 @@
       <el-table-column label="商类类别" prop="name">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.categoryDTO.categoryName}}</span>
+            <span>{{scope.row.categoryId}}</span>
           </div>
         </template>
       </el-table-column>
@@ -95,6 +95,14 @@ export default {
           this.pageNum = data.totalElements;
       });
     },
+    mobileBtn(row){
+      this.$router.push({
+        path: "/Index/commodityDataManagementAddNew",
+        query: {
+          id:row
+        }
+      });
+    },
     //新增
     AddnewBtn() {
       this.$router.push({
@@ -103,11 +111,11 @@ export default {
       });
     },
     //详情
-    detailBtn() {
-      console.log("121");
+    detailBtn(row) {
+    
       this.$router.push({
-        path: "/Index/refundManageDetail",
-        query: {}
+        path: "/Index/commodityDataManagementDetail",
+        query: {id:row}
       });
     },
     Btn() {

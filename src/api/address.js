@@ -10,6 +10,8 @@ export const supplierUpdate='/supplier/update'//更新
 export const goodsInsert='/goods/insert'//添加
 export const goodsSelect='/goods/select'//分页动态查询
 export const goodsDelete='/goods/delete'//删除
+export const goodsUpdate='/goods/update'//修改
+export const goodsSelectById='/goods/selectById'//查询ById
 //分类
 export const categorySelectAll='/category/select'//动态查询
 export const bigCategoryInsert='/bigCategory/insert'//添加大类
@@ -27,3 +29,5 @@ export const userInsert='/user/insert' //添加（用户名唯一）
 export const userSelect='/user/select'//查找所有（分页）
 export const userUpdate='/user/update'//修改
 export const userDelete='/user/delete'//删除
+//采购管理
+export const purchaseIndert='/purchase/insert'//生成采购单
