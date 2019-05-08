@@ -25,6 +25,7 @@ import commodityDataManagement from '../pageDetail/commodityDataManagement.vue'
 import commodityDataManagementAddNew from '../pageDetail/commodityDataManagement/commodityDataManagementAddNew.vue'
 import totalInventory from '../pageDetail/totalInventory.vue'
 import UserManagement from '../pageDetail/userManagement.vue'
+import userManagement1 from '../pageDetail/userManagement.1.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -130,8 +131,12 @@ export default new Router({
         component:totalInventory
       },{
         path:'UserManagement',
-        name:'用户管理',
+        name:'分类管理',
         component:UserManagement
+      },{
+        path:'userManagement1',
+        name:'用户管理',
+        component:userManagement1
       }
 
       ]

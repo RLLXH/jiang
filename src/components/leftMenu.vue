@@ -6,42 +6,42 @@
           <template slot="title">
             <span>基础资料管理</span>
           </template>
-           <el-menu-item index="/Index/warehouseDataManagement">厂商管理</el-menu-item>
-           <el-menu-item index="/Index/commodityDataManagement">商品管理</el-menu-item>
-           <el-menu-item index="/Index/UserManagement">分类管理</el-menu-item>
+          <el-menu-item index="/Index/warehouseDataManagement">厂商管理</el-menu-item>
+          <el-menu-item index="/Index/commodityDataManagement">商品管理</el-menu-item>
+          <el-menu-item index="/Index/UserManagement">分类管理</el-menu-item>
         </el-submenu>
-        <el-submenu index="2">
-          <template slot="title">
-            <span>库存管理</span>
-          </template>
-           <el-menu-item index="/Index/totalInventory">总库存</el-menu-item>
-           <el-menu-item index="/Index/StoreManageOut">采购管理</el-menu-item>
-            <el-menu-item index="/Index/StoreManageIn">销售管理</el-menu-item>
-            <!-- <el-menu-item index="/Index/Grad">调拨管理</el-menu-item> -->
-          </el-submenu>
-        <el-submenu index="3">
-          <template slot="title">
-            <span>查看管理</span>
-          </template>
-           <el-menu-item index="/Index/orderManagement">采购单</el-menu-item>
-            <el-menu-item index="/Index/returnsManagement">销售单</el-menu-item>
-        </el-submenu>
-        <el-submenu index="4">
-          <template slot="title">
-            <span>查看报表</span>
-          </template>
-           <el-menu-item index="/Index/PurchasingManage">周报表</el-menu-item>
-          <el-menu-item index="/Index/PurchasingManage">月报表</el-menu-item>
-          <el-menu-item index="/Index/PurchasingManage">年报表</el-menu-item>
-        </el-submenu>
-          <el-submenu index="5">
+         <el-submenu index="2">
           <template slot="title">
             <span>系统管理</span>
           </template>
-           <el-menu-item index="/Index/PurchasingManage">用户管理</el-menu-item>
+          <el-menu-item index="/Index/userManagement1">用户管理</el-menu-item>
           <el-menu-item index="/Index/UserManagement">权限管理</el-menu-item>
-         
         </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
+            <span>库存管理</span>
+          </template>
+          <el-menu-item index="/Index/totalInventory">查看库存</el-menu-item>
+          <el-menu-item index="/Index/StoreManageOut">采购管理</el-menu-item>
+          <el-menu-item index="/Index/StoreManageIn">销售管理</el-menu-item>
+          <!-- <el-menu-item index="/Index/Grad">调拨管理</el-menu-item> -->
+        </el-submenu>
+        <el-submenu index="4">
+          <template slot="title">
+            <span>查看订单</span>
+          </template>
+          <el-menu-item index="/Index/orderManagement">采购单</el-menu-item>
+          <el-menu-item index="/Index/returnsManagement">销售单</el-menu-item>
+        </el-submenu>
+        <el-submenu index="5">
+          <template slot="title">
+            <span>查看报表</span>
+          </template>
+          <el-menu-item index="/Index/PurchasingManage">周报表</el-menu-item>
+          <el-menu-item index="/Index/PurchasingManage">月报表</el-menu-item>
+          <el-menu-item index="/Index/PurchasingManage">年报表</el-menu-item>
+        </el-submenu>
+       
       </el-menu-item-group>
     </el-menu>
   </div>
@@ -57,16 +57,15 @@ export default {
 @percent: 100%;
 .all {
   height: @percent;
-    background-color:	#F5F5F5;
-  .el-menu{
-    border: none!important;
-      
-  //  .el-menu{
-  //      background-color: seagreen;
-  //      .el-menu-item-group .el-submenu .el-menu{
-  //           background-color: seagreen!important;
-  //      }
+  background-color: #f5f5f5;
+  .el-menu {
+    border: none !important;
 
-       }
+    //  .el-menu{
+    //      background-color: seagreen;
+    //      .el-menu-item-group .el-submenu .el-menu{
+    //           background-color: seagreen!important;
+    //      }
+  }
 }
 </style>

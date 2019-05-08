@@ -1,48 +1,45 @@
 <template>
   <div>
     <div>
-      <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="商品编号:">
-          <el-input></el-input>
+      <el-form
+        label-position="right"
+        label-width="120px"
+        :inline="true"
+        :model="postData"
+        ref="postData"
+        :rules="rules"
+      >
+        <el-form-item label="商品编号:" prop="goodsCode">
+          <el-input v-model="postData.goodsCode"></el-input>
         </el-form-item>
-        <el-form-item label="商品类别:">
-          <el-select v-model="value" placeholder="请选择">
+        <el-form-item label="商品类:" prop="categoryId">
+             <el-select placeholder="请输入信息" clearable v-model="postData.categoryId">
             <el-option
-              v-for="item in categories"
-              :key="item.value"
-              :label="item.value"
-              :value="item.value"
+              v-for="(item,index) in categoryList"
+              :key="index"
+              :label="item.categoryName"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="商品品牌:">
-          <el-input></el-input>
+        <el-form-item label="商品生产日期:" prop="goodsDate">
+          <el-date-picker v-model="postData.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
         </el-form-item>
-        <el-form-item label="商品属性:">
-          <el-input></el-input>
+        <el-form-item label="商品名称:" prop="goodsName">
+          <el-input v-model="postData.goodsName"></el-input>
         </el-form-item>
-        <el-form-item label="商品单价:">
-          <el-input></el-input>
+        <el-form-item label="商品单价:" prop="goodsPrice">
+          <el-input v-model="postData.goodsPrice"></el-input>
         </el-form-item>
-        <el-form-item label="供应商:">
-          <el-input></el-input>
+        <el-form-item label="商品保质期:" prop="goodsShelfLife">
+          <el-input v-model="postData.goodsShelfLife"></el-input>
         </el-form-item>
-        <el-form-item label="供应渠道:">
-          <el-select v-model="value" placeholder="请选择">
-            <el-option
-              v-for="item in channel"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            ></el-option>
-          </el-select>
-        </el-form-item>
-        <el-form-item label="商品备注:">
-          <el-input></el-input>
+        <el-form-item label="厂商ID:" prop="supplierId">
+          <el-input v-model="postData.supplierId"></el-input>
         </el-form-item>
       </el-form>
       <el-row class="btnBox">
-        <el-button>提交</el-button>
+        <el-button @click="postBtn('postData')">提交</el-button>
         <el-button @click="backBtn">返回</el-button>
       </el-row>
     </div>
@@ -50,10 +47,44 @@
 </template>
 <script>
 import axios from "../../api/axios.js";
-import {goodsInsert} from "../../api/address.js";
+import { goodsInsert,categoryList } from "../../api/address.js";
 export default {
   data() {
     return {
+      categoryList:[],
+      supplierList:[],
+      postData: {
+        categoryId: '', //细类ID
+        goodsCode: "", //商品编号
+        goodsDate: "", //商品生产日期
+        goodsName: "", //商品名称
+        goodsPrice: '', //商品单价
+        goodsShelfLife: "", //商品保质期
+        supplierId: "" //厂商ID
+      },
+      rules: {
+        categoryId: [
+          { required: true, message: "请选择", trigger: "change" }
+        ],
+          goodsCode: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+          goodsName: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+          goodsPrice: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+          goodsShelfLife: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+          goodsDate: [
+          { required: true, message: "请选择", trigger: "change" }
+        ],
+          supplierId: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+      },
       channel: [
         {
           value: "直送"
@@ -81,13 +112,30 @@ export default {
         }
       ], //商品类别
       dataList: [
-        {
-          name: "奶粉"
-        }
       ]
     };
   },
+  created(){
+    this.getcategoryList();
+  },
   methods: {
+   
+    getsupplierList(){},
+    getcategoryList(){
+      axios.get(categoryList).then(data=>{
+        console.log(data);
+        this.categoryList=data;
+      })
+    },
+    postBtn(formName){
+       this.$refs[formName].validate(valid => {
+        if (valid) {
+          axios.post(goodsInsert,this.postData).then(data=>{
+            console.log(data);
+            this.$router.go(-1);
+          })
+        }})
+    },
     //返回
     backBtn() {
       this.$router.go(-1);

@@ -5,6 +5,15 @@
         <el-form-item label="供应商名称:">
           <el-input v-model="theQuery.supplierName"></el-input>
         </el-form-item>
+        <el-form-item label="供应商地址:">
+          <el-input v-model="theQuery.supplierAddress"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商电话:">
+          <el-input v-model="theQuery.supplierPhone"></el-input>
+        </el-form-item>
+        <el-form-item label="供应商评价:">
+          <el-input v-model="theQuery.supplierEvaluate"></el-input>
+        </el-form-item>
         <!-- <el-form-item label="库房编号:">
           <el-input v-model="theQuery.storageRoomCode"></el-input>
         </el-form-item>-->
@@ -34,11 +43,12 @@
       </el-table-column>
       <el-table-column label="供应商名" prop="supplierName"></el-table-column>
       <el-table-column label="供应商地址" prop="supplierAddress"></el-table-column>
-      <!-- <el-table-column label="供应商评价" prop="supplierEvaluate"></el-table-column> -->
+      <el-table-column label="供应商评价" prop="supplierEvaluate"></el-table-column>
       <el-table-column label="供应商电话" prop="supplierPhone"></el-table-column>
       <el-table-column label="供应商官网" prop="supplierWeb"></el-table-column>
     </el-table>
-    <el-dialog title="新增库房" :visible.sync="dialogVisibleAdd" width="60%" center>
+     <paging v-on:pageFlag="pageFlag" :pageNum="pageNum" :theQuery="theQuery"></paging>
+    <el-dialog title="新增厂商" :visible.sync="dialogVisibleAdd" width="60%" center>
       <el-form
         label-position="right"
         label-width="100px"
@@ -77,7 +87,7 @@
         ref="updateData"
         :rules="rules"
       >
-       <el-form-item label="供应商名:" prop="supplierName">
+        <el-form-item label="供应商名:" prop="supplierName">
           <el-input v-model="updateData.supplierName"></el-input>
         </el-form-item>
         <el-form-item label="供应商地址:" prop="supplierAddress">
@@ -102,12 +112,22 @@
 </template>
 <script>
 import axios from "../api/axios.js";
-import { supplierINsert, supplierSelect, supplierDelete,supplierUpdate} from "../api/address.js";
+import {
+  supplierINsert,
+  supplierSelect,
+  supplierDelete,
+  supplierUpdate
+} from "../api/address.js";
+import paging from '../components/paging.vue'
 export default {
+  components:{
+    paging
+  },
   data() {
     return {
       dialogVisibleDetail: false,
       dialogVisibleAdd: false,
+      pageNum:'',
       theQuery: {
         pageNum: 1,
         pageSize: 20,
@@ -130,15 +150,13 @@ export default {
         supplierEvaluate: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
-        addrcontactsPersoness: [
+        supplierAddress: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
-        createPerson: [{ required: true, message: "请输入", trigger: "blur" }],
+        supplierWeb: [{ required: true, message: "请输入", trigger: "blur" }],
         addrephoness: [{ required: true, message: "请输入", trigger: "blur" }],
         prohibit: [{ required: true, message: "请输入", trigger: "blur" }],
-        storageRoomCode: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
+        supplierPhone: [{ required: true, message: "请输入", trigger: "blur" }],
         supplierName: [{ required: true, message: "请输入", trigger: "blur" }]
       }
     };
@@ -147,18 +165,21 @@ export default {
     this.getList();
   },
   methods: {
+     //分页
+    pageFlag: function(data) {
+      this.theQuery.pageNum = data.pageNo;
+      this.theQuery.pageSize = data.pageSize;
+      this.getList();
+    },
     updateB() {
       this.dialogVisibleDetail = false;
     },
     updateBtn(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log(this.updateData,'121')
+          console.log(this.updateData, "121");
           axios
-            .put(
-              supplierUpdate + "?id=" + this.updateData.id,
-              this.updateData
-            )
+            .put(supplierUpdate + "?id=" + this.updateData.id, this.updateData)
             .then(data => {
               this.$message.success("修改成功");
               this.dialogVisibleDetail = false;
@@ -168,7 +189,7 @@ export default {
       });
     },
     deleteBtn(row) {
-      axios.delete(supplierDelete+'?id='+row.id).then(data => {
+      axios.delete(supplierDelete + "?id=" + row.id).then(data => {
         this.$message.success("删除成功");
         this.getList();
       });
@@ -177,6 +198,7 @@ export default {
       axios.post(supplierSelect, this.theQuery).then(data => {
         console.log(data);
         this.dataList = data.content;
+        this.pageNum=data.totalElements;
       });
     },
     postB() {
@@ -190,7 +212,13 @@ export default {
             this.$message.success("新增成功");
             this.getList();
             this.dialogVisibleAdd = false;
-          
+            this.postData = {
+              supplierAddress: "",
+              supplierEvaluate: "",
+              supplierName: "",
+              supplierPhone: "",
+              supplierWeb: ""
+            };
           });
         }
       });

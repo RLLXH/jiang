@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { Message } from 'element-ui';
-axios.defaults.baseURL = 'http://192.168.0.105:8888'
+axios.defaults.baseURL = 'http://192.168.10.210:8888'
 
 axios.defaults.withCredentials = true;
 //添加请求拦截器
