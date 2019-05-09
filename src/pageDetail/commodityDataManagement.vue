@@ -8,6 +8,9 @@
         <el-form-item label="商品类别:">
           <el-input v-model="theQuery.categoryName"></el-input>
         </el-form-item>
+        <el-form-item label="商品厂商名">
+          <el-input v-model="theQuery.supplierName"></el-input>
+        </el-form-item>
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
         </el-form-item>
@@ -52,7 +55,7 @@ export default {
     paging
   },
   data() {
-    
+
     return {
       pageNum:'',
       theQuery: {
@@ -112,7 +115,7 @@ export default {
     },
     //详情
     detailBtn(row) {
-    
+
       this.$router.push({
         path: "/Index/commodityDataManagementDetail",
         query: {id:row}
