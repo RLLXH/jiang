@@ -28,6 +28,7 @@ import UserManagement from '../pageDetail/userManagement.vue'
 import userManagement1 from '../pageDetail/userManagement.1.vue'
 import commodityDataManagementDetail from '../pageDetail/commodityDataManagement/commodityDataManagementDetail.vue'
 import purchasingManageUpdate from '../pageDetail/purchasingManage/purchasingManageUpdate.vue'
+import purchasingManage1 from '../pageDetail/purchasingManage.1.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -66,7 +67,7 @@ export default new Router({
         component: StoreManageInDetail
       }, {
         path: 'PurchasingManage',
-        name: '采购管理',
+        name: '采购单',
         component: PurchasingManage
       }, {
         path: 'PurchasingManageAddNew',
@@ -147,6 +148,10 @@ export default new Router({
         path:'purchasingManageUpdate',
         name:"采购更新",
         component:purchasingManageUpdate
+      },{
+        path:'purchasingManage1',
+        name:'采购管理',
+        component:purchasingManage1
       }
 
       ]
