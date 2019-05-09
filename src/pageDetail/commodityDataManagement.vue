@@ -8,7 +8,7 @@
         <el-form-item label="商品类别:">
           <el-input v-model="theQuery.categoryName"></el-input>
         </el-form-item>
-        <el-form-item label="商品厂商名">
+        <el-form-item label="厂商名">
           <el-input v-model="theQuery.supplierName"></el-input>
         </el-form-item>
         <el-form-item label=" ">
