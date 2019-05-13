@@ -33,11 +33,8 @@
         <el-form-item label="商品单价:" prop="goodsPrice">
           <span class="spanBox">{{postData.goodsPrice}}</span>
         </el-form-item>
-        <el-form-item label="商品规格型号:" prop="goodsSpecification">
-          <span class="spanBox">{{postData.goodsSpecification}}</span>
-        </el-form-item>
-        <el-form-item label="商品规格型号:" prop="goodsUnit">
-          <span class="spanBox">{{postData.goodsUnit}}</span>
+        <el-form-item label="商品保质期:" prop="goodsShelfLife">
+          <span class="spanBox">{{postData.goodsShelfLife}}</span>
         </el-form-item>
         <el-form-item label="厂商ID:" prop="supplierId">
           <span class="spanBox">{{postData.supplierId}}</span>
