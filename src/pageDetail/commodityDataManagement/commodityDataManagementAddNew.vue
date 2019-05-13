@@ -31,8 +31,16 @@
         <el-form-item label="商品单价:" prop="goodsPrice">
           <el-input v-model="postData.goodsPrice"></el-input>
         </el-form-item>
-        <el-form-item label="商品保质期:" prop="goodsShelfLife">
-          <el-input v-model="postData.goodsShelfLife"></el-input>
+        <el-form-item label="商品规格型号:" prop="goodsSpecification">
+          <el-input v-model="postData.goodsSpecification"></el-input>
+        </el-form-item>
+        <el-form-item label="商品计量单位:" prop="goodsUnit">
+          <el-select placeholder="请输入信息" clearable v-model="postData.goodsUnit">
+            <el-option value="桶" :label="桶"></el-option>
+            <el-option value="包" :label="包"></el-option>
+            <el-option value="个" :label="个"></el-option>
+            <el-option value="瓶" :label="瓶"></el-option>
+          </el-select>
         </el-form-item>
         <el-form-item label="厂商ID:" prop="supplierId">
           <el-input v-model="postData.supplierId"></el-input>
@@ -47,43 +55,39 @@
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { goodsInsert,categoryList,goodsSelectById,goodsUpdate } from "../../api/address.js";
+import {
+  goodsInsert,
+  categoryList,
+  goodsSelectById,
+  goodsUpdate
+} from "../../api/address.js";
 export default {
   data() {
     return {
-      categoryList:[],
-      supplierList:[],
+      categoryList: [],
+      supplierList: [],
       postData: {
-        categoryId: '', //细类ID
+        categoryId: "", //细类ID
         goodsCode: "", //商品编号
         goodsDate: "", //商品生产日期
         goodsName: "", //商品名称
-        goodsPrice: '', //商品单价
-        goodsShelfLife: "", //商品保质期
-        supplierId: "" //厂商ID
+        goodsPrice: "", //商品单价
+        goodsSpecification: "", //商品保质期
+        supplierId: "", //厂商ID
+        goodsUnit: "" //商品计量单位(桶、包、个、瓶…)
       },
+
       rules: {
-        categoryId: [
-          { required: true, message: "请选择", trigger: "change" }
-        ],
-          goodsCode: [
+        categoryId: [{ required: true, message: "请选择", trigger: "change" }],
+        goodsUnit: [{ required: true, message: "请选择", trigger: "change" }],
+        goodsCode: [{ required: true, message: "请输入", trigger: "blur" }],
+        goodsName: [{ required: true, message: "请输入", trigger: "blur" }],
+        goodsPrice: [{ required: true, message: "请输入", trigger: "blur" }],
+        goodsSpecification: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
-          goodsName: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
-          goodsPrice: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
-          goodsShelfLife: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
-          goodsDate: [
-          { required: true, message: "请选择", trigger: "change" }
-        ],
-          supplierId: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
+        goodsDate: [{ required: true, message: "请选择", trigger: "change" }],
+        supplierId: [{ required: true, message: "请输入", trigger: "blur" }]
       },
       channel: [
         {
@@ -111,45 +115,42 @@ export default {
           label: "D类"
         }
       ], //商品类别
-      dataList: [
-      ]
+      dataList: []
     };
   },
-  created(){
+  created() {
     this.getcategoryList();
-    if(this.$route.query.id){
-      axios.post(goodsSelectById+'?id='+this.$route.query.id).then(
-        data=>{
-          console.log(data,'12')
-          this.postData=data;
-        }
-      )
+    if (this.$route.query.id) {
+      axios.post(goodsSelectById + "?id=" + this.$route.query.id).then(data => {
+        console.log(data, "12");
+        this.postData = data;
+      });
     }
   },
   methods: {
-   
-    getsupplierList(){},
-    getcategoryList(){
-      axios.get(categoryList).then(data=>{
+    getsupplierList() {},
+    getcategoryList() {
+      axios.get(categoryList).then(data => {
         console.log(data);
-        this.categoryList=data;
-      })
+        this.categoryList = data;
+      });
     },
-    postBtn(formName){
-       this.$refs[formName].validate(valid => {
+    postBtn(formName) {
+      this.$refs[formName].validate(valid => {
         if (valid) {
-          if(this.$route.query.id){
-              axios.put(goodsUpdate,this.postData).then(data=>{
-            console.log(data);
-            this.$router.go(-1);})
-          }else{
-                 axios.post(goodsInsert,this.postData).then(data=>{
-            console.log(data);
-            this.$router.go(-1);
-          })
+          if (this.$route.query.id) {
+            axios.put(goodsUpdate, this.postData).then(data => {
+              console.log(data);
+              this.$router.go(-1);
+            });
+          } else {
+            axios.post(goodsInsert, this.postData).then(data => {
+              console.log(data);
+              this.$router.go(-1);
+            });
           }
-       
-        }})
+        }
+      });
     },
     //返回
     backBtn() {
