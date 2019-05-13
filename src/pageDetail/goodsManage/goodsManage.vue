@@ -8,6 +8,13 @@
         <el-form-item label="商品类别:">
           <el-input v-model="theQuery.categoryName"></el-input>
         </el-form-item>
+        <el-form-item label="商品名">
+          <el-input v-model="theQuery.categoryName"></el-input>
+        </el-form-item>
+        <el-form-item label="厂商名">
+          <el-input v-model="theQuery.supplierName"></el-input>
+        </el-form-item>
+
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
         </el-form-item>
@@ -21,13 +28,13 @@
       <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <div>
-            <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
+
             <el-button type="text" @click="mobileBtn(scope.row.id)">编辑</el-button>
             <el-button type="text" @click="deleteBtn(scope.row.id)">删除</el-button>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="商品编号" prop="goodsCode"></el-table-column>
+      <el-table-column label="商品编码" prop="goodsCode"></el-table-column>
       <el-table-column label="商类类别" prop="name">
         <template slot-scope="scope">
           <div>
@@ -35,34 +42,34 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="生产日期" prop="goodsDate"></el-table-column>
+      <el-table-column label="商品规格" prop="goodsSpecification"></el-table-column>
       <el-table-column label="商品名" prop="goodsName"></el-table-column>
-      <el-table-column label="单价" prop="goodsPrice"></el-table-column>
-      <el-table-column label="保质期" prop="goodsShelfLife"></el-table-column>
+      <el-table-column label="计量单位" prop="goodsUnit"></el-table-column>
+      <el-table-column label="进价" prop="goodsPrice"></el-table-column>
+      <el-table-column label="售价" prop="purchasePrice"></el-table-column>
+      <el-table-column label="所属厂商" prop="supplierId"></el-table-column>
     </el-table>
       <paging v-on:pageFlag="pageFlag" :pageNum="pageNum" :theQuery="theQuery"></paging>
   </div>
 </template>
 <script>
-import axios from "../api/axios.js";
-import { goodsSelect ,goodsDelete} from "../api/address.js";
-import paging from "../components/paging.vue";
+import axios from "../../api/axios.js";
+import { goodsSelect ,goodsDelete} from "../../api/address.js";
+import paging from "../../components/paging.vue";
 export default {
    components: {
     paging
   },
   data() {
-    
+
     return {
       pageNum:'',
       theQuery: {
         categoryId: null,
         categoryName:null,
         goodsCode:null,
-        goodsDate:null,
         goodsName:null,
         goodsPrice: null,
-        goodsShelfLife:null,
         pageNum: 1,
         pageSize: 20,
         person:null,
@@ -78,9 +85,33 @@ export default {
   methods: {
     deleteBtn(row){
       axios.delete(goodsDelete+'?id='+row).then(data=>{
-        this.getList();
-      }
-      )
+        console.log(code)
+        //console.log(data.msg);
+          /*this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            console.log(data.code)
+            console.log(data.msg)
+            //this.getList()
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+
+            });
+          }).catch(() => {
+
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });*/
+      }).catch(function(res){
+        alert(res.code)
+        console.log(res);
+      });
+
     },
         //分页
     pageFlag: function(data) {
@@ -97,7 +128,7 @@ export default {
     },
     mobileBtn(row){
       this.$router.push({
-        path: "/Index/commodityDataManagementAddNew",
+        path: "/Index/addGoods",
         query: {
           id:row
         }
@@ -106,16 +137,8 @@ export default {
     //新增
     AddnewBtn() {
       this.$router.push({
-        path: "/Index/commodityDataManagementAddNew",
+        path: "/Index/addGoods",
         query: {}
-      });
-    },
-    //详情
-    detailBtn(row) {
-    
-      this.$router.push({
-        path: "/Index/commodityDataManagementDetail",
-        query: {id:row}
       });
     },
     Btn() {

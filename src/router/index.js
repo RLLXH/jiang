@@ -11,22 +11,17 @@ import PurchasingManage from '../pageDetail/purchasingManage.vue'
 import StoreManageInDetail from '../pageDetail/StoreManageIn/storeManagInDetail.vue'
 import PurchasingManageAddNew from '../pageDetail/purchasingManage/purchasingManageAddNew.vue'
 import PurchasingManageDetail from '../pageDetail/purchasingManage/purchasingManageDetail.vue'
-import refundManageAddNew from '../pageDetail/refundManage/refundManageAddNew.vue'
-import refundManageDetail from '../pageDetail/refundManage/refundManageDetail.vue'
-import refundManage from '../pageDetail/refundManage.vue'
 import orderManagement from '../pageDetail/orderManagement.vue'
 import orderManagementAddNew from '../pageDetail/orderManagement/orderManagementAddNew.vue'
 import orderManagementDetail from '../pageDetail/orderManagement/orderManagementDetail.vue'
-import returnsManagement from '../pageDetail/returnsManagement.vue'
-import returnsManagementAddNew from '../pageDetail/returnsManagement/returnsManagementAddNew.vue'
-import returnsManagementDetail from '../pageDetail/returnsManagement/returnsManagementDetail.vue'
-import warehouseDataManagement from '../pageDetail/warehouseDataManagement.vue'
-import commodityDataManagement from '../pageDetail/commodityDataManagement.vue'
-import commodityDataManagementAddNew from '../pageDetail/commodityDataManagement/commodityDataManagementAddNew.vue'
+import supplier from '../pageDetail/supplier.vue'
+
+import goodsManage from '../pageDetail/goodsManage/goodsManage.vue'
+import addGoods from '../pageDetail/goodsManage/addGoods.vue'
+
 import totalInventory from '../pageDetail/totalInventory.vue'
 import UserManagement from '../pageDetail/userManagement.vue'
 import userManagement1 from '../pageDetail/userManagement.1.vue'
-import commodityDataManagementDetail from '../pageDetail/commodityDataManagement/commodityDataManagementDetail.vue'
 import purchasingManageUpdate from '../pageDetail/purchasingManage/purchasingManageUpdate.vue'
 import purchasingManage1 from '../pageDetail/purchasingManage.1.vue'
 Vue.use(Router)
@@ -80,19 +75,7 @@ export default new Router({
         path: 'PurchasingManageDetail',
         name: '采购详情',
         component: PurchasingManageDetail
-      }, {
-        path: 'refundManageAddNew',
-        name: '退供新增',
-        component: refundManageAddNew
-      }, {
-        path: 'refundManageDetail',
-        name: '退供详情',
-        component: refundManageDetail
-      }, {
-        path: 'refundManage',
-        name: '退供管理',
-        component: refundManage
-      }, {
+      },  {
         path: 'orderManagementAddNew',
         name: '订单新增',
         component: orderManagementAddNew
@@ -104,30 +87,18 @@ export default new Router({
         path: 'orderManagement',
         name: '订单管理',
         component: orderManagement
-      }, {
-        path: 'returnsManagementAddNew',
-        name: '退货新增',
-        component: returnsManagementAddNew,
-      }, {
-        path: 'returnsManagementDetail',
-        name: '退货详情',
-        component: returnsManagementDetail
-      }, {
-        path: 'returnsManagement',
-        name: '退货管理',
-        component: returnsManagement
       },{
-        path:'warehouseDataManagement',
-        name:"库房资料管理",
-        component:warehouseDataManagement
+        path:'supplier',
+        name:"厂商",
+        component:supplier
       },{
-        path:'commodityDataManagement',
+        path:'goodsManage',
         name:'商品资料管理',
-        component:commodityDataManagement
+        component:goodsManage
       },{
-        path:'commodityDataManagementAddNew',
+        path:'addGoods',
         name:'新增商品',
-        component:commodityDataManagementAddNew
+        component:addGoods
       },{
         path:'totalInventory',
         name:'总库存',
@@ -140,10 +111,6 @@ export default new Router({
         path:'userManagement1',
         name:'用户管理',
         component:userManagement1
-      },{
-        path:'commodityDataManagementDetail',
-        name:'商品详情',
-        component:commodityDataManagementDetail
       },{
         path:'purchasingManageUpdate',
         name:"采购更新",

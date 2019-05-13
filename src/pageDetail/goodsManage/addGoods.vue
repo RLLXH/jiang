@@ -22,18 +22,24 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="商品生产日期:" prop="goodsDate">
-          <el-date-picker v-model="postData.goodsDate" type="date" placeholder="选择日期"></el-date-picker>
-        </el-form-item>
+
         <el-form-item label="商品名称:" prop="goodsName">
           <el-input v-model="postData.goodsName"></el-input>
         </el-form-item>
-        <el-form-item label="商品单价:" prop="goodsPrice">
+
+        <el-form-item label="商品规格:" prop="goodsCode">
+          <el-input v-model="postData.goodsSpecification"></el-input>
+        </el-form-item>
+        <el-form-item label="计量单位:" prop="goodsCode">
+          <el-input v-model="postData.goodsUnit"></el-input>
+        </el-form-item>
+        <el-form-item label="进价:" prop="goodsCode">
           <el-input v-model="postData.goodsPrice"></el-input>
         </el-form-item>
-        <el-form-item label="商品保质期:" prop="goodsShelfLife">
-          <el-input v-model="postData.goodsShelfLife"></el-input>
+        <el-form-item label="售价:" prop="goodsCode">
+          <el-input v-model="postData.purchasePrice"></el-input>
         </el-form-item>
+
         <el-form-item label="厂商ID:" prop="supplierId">
           <el-input v-model="postData.supplierId"></el-input>
         </el-form-item>
@@ -58,15 +64,26 @@ export default {
         goodsCode: "", //商品编号
         goodsDate: "", //商品生产日期
         goodsName: "", //商品名称
-        goodsPrice: '', //商品单价
-        goodsShelfLife: "", //商品保质期
+        goodsPrice: '', //商品进价
+        purchasePrice:'',
+        goodsSpecification:'',//规格
+        goodsUnit:'',
         supplierId: "" //厂商ID
       },
       rules: {
         categoryId: [
           { required: true, message: "请选择", trigger: "change" }
         ],
-          goodsCode: [
+        purchasePrice: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        goodsSpecification: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        goodsUnit: [
+          { required: true, message: "请输入", trigger: "blur" }
+        ],
+        goodsCode: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
           goodsName: [
@@ -75,12 +92,7 @@ export default {
           goodsPrice: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
-          goodsShelfLife: [
-          { required: true, message: "请输入", trigger: "blur" }
-        ],
-          goodsDate: [
-          { required: true, message: "请选择", trigger: "change" }
-        ],
+
           supplierId: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
@@ -127,7 +139,7 @@ export default {
     }
   },
   methods: {
-   
+
     getsupplierList(){},
     getcategoryList(){
       axios.get(categoryList).then(data=>{
@@ -148,7 +160,7 @@ export default {
             this.$router.go(-1);
           })
           }
-       
+
         }})
     },
     //返回
