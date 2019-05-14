@@ -12,7 +12,7 @@ import paging from './components/paging.vue'
 Vue.prototype.$echarts = echarts 
 Vue.component('paging',paging)
 Vue.use(ElementUI)
-Vue.config.productionTip = false
+// Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
