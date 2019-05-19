@@ -180,7 +180,12 @@ export default {
       this.active--;
     },
     nextBtn() {
-      this.active++;
+      if(this.theSelection.length>0){
+         this.active++;
+      }else{
+        this.$message.warning('请选择商品')
+      }
+     
     },
     //选中商品时
     selection(list) {

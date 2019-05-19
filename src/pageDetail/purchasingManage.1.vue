@@ -19,23 +19,23 @@
         </el-form-item>
       </el-form>
     </div>
-    <el-row>
+    <!-- <el-row>
       <el-button class="addBtn" @click="AddnewBtn">增加</el-button>
-    </el-row>
+    </el-row> -->
     <el-table :data="dataList" style="width: 100%" border>
       <el-table-column label="序号" type="index" width="80"></el-table-column>
       <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <div>
             <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
-            <el-button type="text" @click="updateBtn(scope.row.id)" v-if="!scope.row.storage">编辑</el-button>
-          
+
+            <el-button type="text" @click="stoBtn(scope.row)" v-if="!scope.row.storage">入库</el-button>
           </div>
         </template>
       </el-table-column>
       <el-table-column label="操作人员" prop="person"></el-table-column>
       <el-table-column label="订单编号" prop="purchaseCode"></el-table-column>
-      <el-table-column label="采购时间" prop="purchaseTime"></el-table-column>
+      <el-table-column label="入库时间" prop="purchaseTime"></el-table-column>
       <el-table-column label="是否入库" prop="storage">
         <template slot-scope="scope">
           <div>
@@ -71,7 +71,16 @@ export default {
   },
   methods: {
     //入库
-    stoBtn(){},
+    stoBtn(row){
+        console.log(row)
+        let data={
+            id: row.id,
+           person:row.person
+        }
+        axios.post(storeroomInsert,data).then(data=>{
+          this.getList();
+        })
+    },
     //分页
     pageFlag: function(data) {
       this.theQuery.pageNum = data.pageNo;

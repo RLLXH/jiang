@@ -35,3 +35,6 @@ export const purchaseSelect='/purchase/select'//采购单动态分页显示
 export const purchaseSelectDetail='/purchase/selectId'//获取采购单详情
 export const purchaseDelete='/purchase/delete'//删除 
 export const purchaseUpdate='/purchase/update'//更新采购单
+//库存
+export const storeroomSelect='/storeroom/select'//商品库存动态分页显示
+export const storeroomInsert='/storeroom/insert'//商品进库

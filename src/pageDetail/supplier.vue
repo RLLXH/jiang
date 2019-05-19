@@ -11,18 +11,9 @@
         <el-form-item label="供应商电话:">
           <el-input v-model="theQuery.supplierPhone"></el-input>
         </el-form-item>
-        <el-form-item label="供应商评价:">
-          <el-input v-model="theQuery.supplierEvaluate"></el-input>
+        <el-form-item label="供应商编号:">
+          <el-input v-model="theQuery.supplierCode"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="库房编号:">
-          <el-input v-model="theQuery.storageRoomCode"></el-input>
-        </el-form-item>-->
-        <!-- <el-form-item label="是否禁用:" prop="prohibit">
-          <el-select v-model="theQuery.prohibit">
-            <el-option :value="true" label="是"></el-option>
-            <el-option :value="false" label="否"></el-option>
-          </el-select>
-        </el-form-item>-->
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
         </el-form-item>
@@ -43,7 +34,7 @@
       </el-table-column>
       <el-table-column label="供应商名" prop="supplierName"></el-table-column>
       <el-table-column label="供应商地址" prop="supplierAddress"></el-table-column>
-      <el-table-column label="供应商评价" prop="supplierEvaluate"></el-table-column>
+      <el-table-column label="供应商编码" prop="supplierCode"></el-table-column>
       <el-table-column label="供应商电话" prop="supplierPhone"></el-table-column>
       <el-table-column label="供应商官网" prop="supplierWeb"></el-table-column>
     </el-table>
@@ -63,8 +54,8 @@
         <el-form-item label="供应商地址:" prop="supplierAddress">
           <el-input v-model="postData.supplierAddress"></el-input>
         </el-form-item>
-        <el-form-item label="供应商评价:" prop="supplierEvaluate">
-          <el-input v-model="postData.supplierEvaluate"></el-input>
+        <el-form-item label="供应商编码:" prop="supplierEvaluate">
+          <el-input v-model="postData.supplierCode"></el-input>
         </el-form-item>
         <el-form-item label="供应商电话:" prop="supplierPhone">
           <el-input v-model="postData.supplierPhone"></el-input>
@@ -73,7 +64,7 @@
           <el-input v-model="postData.supplierWeb"></el-input>
         </el-form-item>
       </el-form>
-      <el-row class="dialoBtnBox">
+      <el-row class="dialogBtnBox">
         <el-button @click="postBtn('postData')">提交</el-button>
         <el-button @click="postB">取消</el-button>
       </el-row>
@@ -93,8 +84,8 @@
         <el-form-item label="供应商地址:" prop="supplierAddress">
           <el-input v-model="updateData.supplierAddress"></el-input>
         </el-form-item>
-        <el-form-item label="供应商评价:" prop="supplierEvaluate">
-          <el-input v-model="updateData.supplierEvaluate"></el-input>
+        <el-form-item label="供应商编码:" prop="supplierEvaluate">
+          <el-input v-model="updateData.supplierCode"></el-input>
         </el-form-item>
         <el-form-item label="供应商电话:" prop="supplierPhone">
           <el-input v-model="updateData.supplierPhone"></el-input>
@@ -103,7 +94,7 @@
           <el-input v-model="updateData.supplierWeb"></el-input>
         </el-form-item>
       </el-form>
-      <el-row class="dialoBtnBox">
+      <el-row class="dialogBtnBox">
         <el-button @click="updateBtn('updateData')">提交</el-button>
         <el-button @click="updateB">取消</el-button>
       </el-row>
@@ -132,7 +123,7 @@ export default {
         pageNum: 1,
         pageSize: 20,
         supplierAddress: "",
-        supplierEvaluate: "",
+        supplierCode: "",
         supplierName: "",
         supplierPhone: "",
         supplierWeb: ""
@@ -147,14 +138,13 @@ export default {
       },
       dataList: [],
       rules: {
-        supplierEvaluate: [
+        supplierCode: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
         supplierAddress: [
           { required: true, message: "请输入", trigger: "blur" }
         ],
         supplierWeb: [{ required: true, message: "请输入", trigger: "blur" }],
-        addrephoness: [{ required: true, message: "请输入", trigger: "blur" }],
         prohibit: [{ required: true, message: "请输入", trigger: "blur" }],
         supplierPhone: [{ required: true, message: "请输入", trigger: "blur" }],
         supplierName: [{ required: true, message: "请输入", trigger: "blur" }]
@@ -239,7 +229,7 @@ export default {
 .addBtn {
   margin: 10px 0px;
 }
-.dialoBtnBox {
+.dialogBtnBox {
   text-align: center;
 }
 </style>

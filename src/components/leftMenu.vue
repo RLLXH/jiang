@@ -6,8 +6,8 @@
           <template slot="title">
             <span>基础资料管理</span>
           </template>
-          <el-menu-item index="/Index/warehouseDataManagement">厂商管理</el-menu-item>
-          <el-menu-item index="/Index/commodityDataManagement">商品管理</el-menu-item>
+          <el-menu-item index="/Index/supplier">厂商管理</el-menu-item>
+          <el-menu-item index="/Index/goodsManage">商品管理</el-menu-item>
           <el-menu-item index="/Index/UserManagement">分类管理</el-menu-item>
         </el-submenu>
          <el-submenu index="2">
@@ -22,7 +22,7 @@
             <span>库存管理</span>
           </template>
           <el-menu-item index="/Index/totalInventory">查看库存</el-menu-item>
-          <el-menu-item index="/Index/PurchasingManage">采购管理</el-menu-item>
+          <el-menu-item index="/Index/purchasingManage1">采购管理</el-menu-item>
           <el-menu-item index="/Index/StoreManageIn">销售管理</el-menu-item>
           <!-- <el-menu-item index="/Index/Grad">调拨管理</el-menu-item> -->
         </el-submenu>
@@ -41,7 +41,7 @@
           <el-menu-item index="/Index/PurchasingManage">月报表</el-menu-item>
           <el-menu-item index="/Index/PurchasingManage">年报表</el-menu-item>
         </el-submenu>
-       
+
       </el-menu-item-group>
     </el-menu>
   </div>
