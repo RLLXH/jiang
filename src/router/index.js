@@ -27,12 +27,18 @@ import purchasingManage1 from '../pageDetail/purchasingManage.1.vue'
 import SalesList from '../pageDetail/SalesList.vue'
 import saleListDetail from '../pageDetail/salesList/saleListDetail.vue'
 import salesListAddNew from '../pageDetail/salesList/salesListAddNew.vue'
+import loading from '../components/loadIng.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/Index/Grad'
+      redirect: '/loading'
+    },
+    {
+      path:'/loading',
+      name:'登录页',
+      component:loading
     },
     {
       path: '/Index',

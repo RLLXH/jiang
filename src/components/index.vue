@@ -33,6 +33,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang='less'>
+::-webkit-scrollbar{width: 6px; height: 6px;} 
+  /*定义滚动条轨道 内阴影+圆角*/ 
+  ::-webkit-scrollbar-track{border-radius: 10px;} 
+  /*定义滑块 内阴影+圆角*/ 
+  ::-webkit-scrollbar-thumb{border-radius: 10px;background-color: rgba(70, 69, 69, 0.226);} 
 @percent: 100%;
 .visit {
   width: 100%;

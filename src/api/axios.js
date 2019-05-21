@@ -3,7 +3,7 @@ import {
     Message,
     MessageBox
 } from 'element-ui';
-axios.defaults.baseURL = 'http://192.168.10.210:8888'
+axios.defaults.baseURL = 'http://localhost:8888'
 //添加请求拦截器
 
 axios.interceptors.request.use(
