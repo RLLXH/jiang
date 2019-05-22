@@ -1,7 +1,7 @@
 <template>
   <div class="all">
     <div class="header">商品管理系统
-       <!-- <span>欢迎{{this.$store.state.loading.user.roleDTOS[0].role}}{{this.$store.state.loading.user.name+'&nbsp&nbsp'}}<i class="fa fa-sign-out" aria-hidden="true" @click="signOut"></i></span> -->
+       <span>欢迎{{this.$store.state.loading.user.name+'&nbsp&nbsp'}}<i class="fa fa-sign-out" aria-hidden="true" @click="signOut"></i></span>
     </div>
     <span>
       <el-breadcrumb class="breadBox">
@@ -23,6 +23,7 @@ export default {
   created() {
     sessionStorage.setItem("name", this.$route.name);
     this.bread = sessionStorage.getItem("name");
+    console.log(this.$store)
   },
   methods: {
        signOut(){
