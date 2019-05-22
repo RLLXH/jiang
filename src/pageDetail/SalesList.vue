@@ -26,7 +26,8 @@
         <template slot-scope="scope">
           <div>
             <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
-            <el-button type="text" @click="deleteBtn(scope.row.id)" v-if="!scope.row.storage">出库</el-button>
+            <el-button type="text" @click="detailBtn">编辑</el-button>
+            <el-button type="text" @click="deleteBtn(scope.row.id)" v-if="!scope.row.storage">删除</el-button>
           </div>
         </template>
       </el-table-column>
@@ -54,7 +55,7 @@
 </template>
 <script>
 import axios from "../api/axios.js";
-import { shipmentSelect, storeroomOutput } from "../api/address.js";
+import { shipmentSelect, shipmentDelete } from "../api/address.js";
 export default {
   data() {
     return {
@@ -76,12 +77,8 @@ export default {
   },
   methods: {
     deleteBtn(row) {
-      let body={
-        id:row,
-        person:''
-      }
-      axios.post(storeroomOutput,body).then(data => {
-        this.$message.success("出库成功");
+      axios.delete(shipmentDelete + "?id=" + row).then(data => {
+        this.$message.success("删除成功");
         this.getList();
       });
     },
