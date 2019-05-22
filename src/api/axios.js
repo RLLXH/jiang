@@ -5,7 +5,7 @@ import {
 } from 'element-ui';
 axios.defaults.baseURL = 'http://localhost:8888'
 //添加请求拦截器
-axios.defaults.withCredentials = true;
+
 axios.interceptors.request.use(
     config => {
         config.params = Object.assign({})
