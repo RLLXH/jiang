@@ -32,7 +32,13 @@
       <el-table-column label="用户编号" prop="uid"></el-table-column>
       <el-table-column label="用户名称" prop="name"></el-table-column>
       <el-table-column label="用户登录名" prop="username"></el-table-column>
-      <el-table-column label="权限" prop="roleListId"></el-table-column>
+      <el-table-column label="权限" prop="roleListId">
+        <template slot-scope="scope">
+          <div>
+            <span>{{scope.row.roleDTOS.length>0?scope.row.roleDTOS[0].role:''}}</span>
+          </div>
+        </template>
+      </el-table-column>
     </el-table>
     <el-dialog title="新增用户" :visible.sync="dialogVisibleAdd" width="20%" center>
       <el-form
@@ -54,8 +60,8 @@
         </el-form-item>
         <el-form-item label="用户权限:">
           <el-select v-model="addData.roleListId">
-            <el-option value="0" label="管理员"></el-option>
-            <el-option value="1" label="游客"></el-option>
+            <el-option value="2" label="管理员"></el-option>
+            <el-option value="3" label="游客"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -79,15 +85,15 @@
         <el-form-item label="用户登录名:" prop="username">
           <el-input v-model="updateData.username"></el-input>
         </el-form-item>
-        <el-form-item label="新密码:" prop="password">
+        <el-form-item label="用户权限:">
+          <el-select v-model="updateData.roleListId">
+            <el-option value="2" label="管理员"></el-option>
+            <el-option value="3" label="游客"></el-option>
+          </el-select>
+        </el-form-item>
+         <el-form-item label="新密码:">
           <el-input v-model="updateData.password" type="password"></el-input>
         </el-form-item>
-        <!-- <el-form-item label="用户权限:">
-          <el-select>
-              <el-option value="管理员" label="管理员"></el-option>
-                <el-option value="游客" label="游客"></el-option>
-          </el-select>
-        </el-form-item>-->
       </el-form>
       <el-row class="dialoBtnBox">
         <el-button @click="updatepostBtn('updateData')">提交</el-button>
@@ -149,7 +155,8 @@ export default {
         id: row.uid,
         name: row.name,
         username: row.username,
-        password: ""
+        password: row.password,
+        roleListId:row.roleDTOS[0].description,
       };
     },
     getList() {
