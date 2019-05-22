@@ -85,11 +85,32 @@ export default {
   methods: {
     deleteBtn(row){
       axios.delete(goodsDelete+'?id='+row).then(data=>{
-        this.$message.warning('删除成功')
-        this.getList();
-      })
-        
-      
+        console.log(code)
+        //console.log(data.msg);
+          /*this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+            confirmButtonText: '确定',
+            cancelButtonText: '取消',
+            type: 'warning'
+          }).then(() => {
+            console.log(data.code)
+            console.log(data.msg)
+            //this.getList()
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+
+            });
+          }).catch(() => {
+
+            this.$message({
+              type: 'info',
+              message: '已取消删除'
+            });
+          });*/
+      }).catch(function(res){
+        alert(res.code)
+        console.log(res);
+      });
 
     },
         //分页

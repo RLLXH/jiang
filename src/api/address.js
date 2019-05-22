@@ -38,12 +38,3 @@ export const purchaseUpdate='/purchase/update'//更新采购单
 //库存
 export const storeroomSelect='/storeroom/select'//商品库存动态分页显示
 export const storeroomInsert='/storeroom/insert'//商品进库
-export const storeroomOutput='/storeroom/output'//商品出库
-//销售
-export const shipmentDelete='/shipment/delete'//删除
-export const shipmentInsert='/shipment/insert'//生成销售单
-export const shipmentSelect='/shipment/select'//销售单动态分页显示
-export const shipmentSelectDetail='/shipment/selectDetail'//获取销售单详情
-export const shipmentUpdate='/shipment/update'//更新采购单
-//登录
-export const userInfoLogin='/userInfo/login'//登陆
