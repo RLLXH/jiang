@@ -24,12 +24,21 @@ import UserManagement from '../pageDetail/userManagement.vue'
 import userManagement1 from '../pageDetail/userManagement.1.vue'
 import purchasingManageUpdate from '../pageDetail/purchasingManage/purchasingManageUpdate.vue'
 import purchasingManage1 from '../pageDetail/purchasingManage.1.vue'
+import SalesList from '../pageDetail/SalesList.vue'
+import saleListDetail from '../pageDetail/salesList/saleListDetail.vue'
+import salesListAddNew from '../pageDetail/salesList/salesListAddNew.vue'
+import loading from '../components/loadIng.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/Index/Grad'
+      redirect: '/loading'
+    },
+    {
+      path:'/loading',
+      name:'登录页',
+      component:loading
     },
     {
       path: '/Index',
@@ -119,6 +128,18 @@ export default new Router({
         path:'purchasingManage1',
         name:'采购管理',
         component:purchasingManage1
+      },{
+        path:'SalesList',
+        name:'销售单',
+        component:SalesList
+      },{
+        path:'saleListDetail',
+        name:'销售单详情',
+        component:saleListDetail
+      },{
+        path:'salesListAddNew',
+        name:'销售单新增',
+        component:salesListAddNew
       }
 
       ]

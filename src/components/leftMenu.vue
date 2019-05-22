@@ -31,7 +31,7 @@
             <span>订单管理</span>
           </template>
           <el-menu-item index="/Index/PurchasingManage">采购单</el-menu-item>
-          <el-menu-item index="/Index/returnsManagement">销售单</el-menu-item>
+          <el-menu-item index="/Index/SalesList">销售单</el-menu-item>
         </el-submenu>
         <el-submenu index="5">
           <template slot="title">
