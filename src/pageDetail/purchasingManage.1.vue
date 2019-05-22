@@ -35,7 +35,7 @@
       </el-table-column>
       <el-table-column label="操作人员" prop="person"></el-table-column>
       <el-table-column label="订单编号" prop="purchaseCode"></el-table-column>
-      <el-table-column label="入库时间" prop="purchaseTime"></el-table-column>
+      <el-table-column label="入库时间" prop="storeTime"></el-table-column>
       <el-table-column label="是否入库" prop="storage">
         <template slot-scope="scope">
           <div>
@@ -75,7 +75,7 @@ export default {
         console.log(row)
         let data={
             id: row.id,
-           person:row.person
+           person:this.$store.state.loading.user.name
         }
         axios.post(storeroomInsert,data).then(data=>{
           this.getList();

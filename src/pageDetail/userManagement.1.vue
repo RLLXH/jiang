@@ -120,7 +120,7 @@ export default {
         name: "", //名字
         password: "", //密码
         username: "", //登录名（唯一）
-        roleListId: "" //权限
+        roleListId: "3" //权限
       },
       updateData: {},
       dataList: [],
@@ -140,6 +140,9 @@ export default {
         if (valid) {
           let id = this.updateData.id;
           delete this.updateData.id;
+          let roleListId=this.updateData.roleListId
+          delete this.updateData.roleListId
+          this.updateData.roleListId=[roleListId-0]
           axios.put(userUpdate + "?id=" + id, this.updateData).then(data => {
             this.$message.success("修改成功");
             this.dialogVisibleUpadte = false;

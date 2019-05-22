@@ -2,20 +2,11 @@
   <div>
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="库房:">
-          <el-input></el-input>
-        </el-form-item>
         <el-form-item label="商品名称:">
-          <el-input></el-input>
-        </el-form-item>
-        <el-form-item label="进货状态:">
-          <el-input></el-input>
-        </el-form-item>
-        <el-form-item label="销售状态:">
-          <el-input></el-input>
+          <el-input v-model="theQuery.goodsName"></el-input>
         </el-form-item>
         <el-form-item label=" ">
-          <el-button>查询</el-button>
+          <el-button @click="getList">查询</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -40,8 +31,7 @@
         </template>
       </el-table-column>
       <el-table-column label="库存数量" prop="amount"></el-table-column>
-      <el-table-column label="入库时间" prop="updateTime"></el-table-column>
-      <!-- <el-table-column label="进货状态" prop="name"></el-table-column> -->
+      <el-table-column label="更新时间" prop="updateTime"></el-table-column>
     </el-table>
   </div>
 </template>

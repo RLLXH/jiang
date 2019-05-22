@@ -29,7 +29,7 @@
           <div>
             <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
             <el-button type="text" @click="updateBtn(scope.row.id)" v-if="!scope.row.storage">编辑</el-button>
-          
+            <el-button type="text" @click="stoBtn(scope.row)" v-if="!scope.row.storage">入库</el-button>
           </div>
         </template>
       </el-table-column>
@@ -71,7 +71,17 @@ export default {
   },
   methods: {
     //入库
-    stoBtn(){},
+       //入库
+    stoBtn(row){
+        console.log(row)
+        let data={
+            id: row.id,
+           person:this.$store.state.loading.user.name
+        }
+        axios.post(storeroomInsert,data).then(data=>{
+          this.getList();
+        })
+    },
     //分页
     pageFlag: function(data) {
       this.theQuery.pageNum = data.pageNo;

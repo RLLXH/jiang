@@ -28,6 +28,7 @@ import SalesList from '../pageDetail/SalesList.vue'
 import saleListDetail from '../pageDetail/salesList/saleListDetail.vue'
 import salesListAddNew from '../pageDetail/salesList/salesListAddNew.vue'
 import loading from '../components/loadIng.vue'
+import saleListMobile from '../pageDetail/salesList/saleListMobile.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -77,9 +78,6 @@ export default new Router({
         path: 'PurchasingManageAddNew',
         name: '采购新增',
         component: PurchasingManageAddNew,
-        meta:{
-          keepAlive: true // 此组件需要被缓存
-        }
       }, {
         path: 'PurchasingManageDetail',
         name: '采购详情',
@@ -140,6 +138,10 @@ export default new Router({
         path:'salesListAddNew',
         name:'销售单新增',
         component:salesListAddNew
+      },{
+        path:'saleListMobile',
+        name:'销售单修改',
+        component:saleListMobile
       }
 
       ]

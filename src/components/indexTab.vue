@@ -23,7 +23,7 @@ export default {
   created() {
     sessionStorage.setItem("name", this.$route.name);
     this.bread = sessionStorage.getItem("name");
-    console.log(this.$store)
+    this.$store.commit('loading/setUser',JSON.parse(sessionStorage.getItem('user')))
   },
   methods: {
        signOut(){

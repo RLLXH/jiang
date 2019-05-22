@@ -28,7 +28,6 @@
       <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <div>
-
             <el-button type="text" @click="mobileBtn(scope.row.id)">编辑</el-button>
             <el-button type="text" @click="deleteBtn(scope.row.id)">删除</el-button>
           </div>
@@ -38,7 +37,7 @@
       <el-table-column label="商类类别" prop="name">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.categoryId}}</span>
+            <span>{{scope.row.categoryName}}</span>
           </div>
         </template>
       </el-table-column>
@@ -47,14 +46,14 @@
       <el-table-column label="计量单位" prop="goodsUnit"></el-table-column>
       <el-table-column label="进价" prop="goodsPrice"></el-table-column>
       <el-table-column label="售价" prop="purchasePrice"></el-table-column>
-      <el-table-column label="所属厂商" prop="supplierId"></el-table-column>
+      <el-table-column label="所属厂商" prop="supplierName"></el-table-column>
     </el-table>
       <paging v-on:pageFlag="pageFlag" :pageNum="pageNum" :theQuery="theQuery"></paging>
   </div>
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { goodsSelect ,goodsDelete} from "../../api/address.js";
+import { goodsSelect ,goodsDelete,supplierSelectAll,categoryList} from "../../api/address.js";
 import paging from "../../components/paging.vue";
 export default {
    components: {
@@ -63,6 +62,8 @@ export default {
   data() {
 
     return {
+       categoryList:[],
+      supplierList:[],
       pageNum:'',
       theQuery: {
         categoryId: null,
@@ -81,8 +82,22 @@ export default {
   },
   created(){
     this.getList();
+     this.getcategoryList();
+    this.getsupplierList()
   },
   methods: {
+      getsupplierList(){
+      axios.post(supplierSelectAll).then(data=>{
+        console.log(data,'厂商')
+        this.supplierList=data
+      })
+    },
+    getcategoryList(){
+      axios.get(categoryList).then(data=>{
+        console.log(data);
+        this.categoryList=data;
+      })
+    },
     deleteBtn(row){
       axios.delete(goodsDelete+'?id='+row).then(data=>{
         this.$message.warning('删除成功')
@@ -101,6 +116,18 @@ export default {
     getList() {
       axios.post(goodsSelect,this.theQuery).then(data=>{
         console.log(data)
+        data.content.map((v,k)=>{
+          this.supplierList.map((v1=>{
+            if(v.supplierId=v1.id){
+              v.supplierName=v1.supplierName
+            }
+            }))
+            this.categoryList.map((v1=>{
+            if(v.categoryId=v1.id){
+              v.categoryName=v1.categoryName
+            }
+            }))
+        })
         this.dataList=data.content
           this.pageNum = data.totalElements;
       });

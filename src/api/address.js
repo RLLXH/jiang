@@ -6,6 +6,7 @@ export const supplierINsert='/supplier/insert'//添加
 export const supplierSelect='/supplier/select' //(动态分页)查询
 export const supplierDelete='/supplier/delete'//删除
 export const supplierUpdate='/supplier/update'//更新
+export const supplierSelectAll='/supplier/selectAll'//查询所有
 //商品
 export const goodsInsert='/goods/insert'//添加
 export const goodsSelect='/goods/select'//分页动态查询

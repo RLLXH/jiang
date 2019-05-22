@@ -22,8 +22,8 @@
             <span>库存管理</span>
           </template>
           <el-menu-item index="/Index/totalInventory">查看库存</el-menu-item>
-          <el-menu-item index="/Index/purchasingManage1">采购管理</el-menu-item>
-          <el-menu-item index="/Index/StoreManageIn">销售管理</el-menu-item>
+          <!-- <el-menu-item index="/Index/purchasingManage1">采购管理</el-menu-item>
+          <el-menu-item index="/Index/StoreManageIn">销售管理</el-menu-item> -->
           <!-- <el-menu-item index="/Index/Grad">调拨管理</el-menu-item> -->
         </el-submenu>
         <el-submenu index="4">

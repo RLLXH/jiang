@@ -30,7 +30,7 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="销售单号" prop="saleCode"></el-table-column>
+      <el-table-column label="销售单号" prop="shipmentCode"></el-table-column>
       <!-- <el-table-column label="类型" prop="saleType"></el-table-column> -->
       <el-table-column label="状态" prop="name">
         <template slot-scope="scope">

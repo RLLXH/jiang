@@ -12,25 +12,22 @@
         <el-row>
           <el-col :span="8">
             <el-form-item label="操作人员：" prop="person">
-              <el-input v-model="detailData.person"></el-input>
+              <span>{{detailData.person}}</span>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="订单编号：" prop="purchaseCode">
-              <el-input v-model="detailData.purchaseCode"></el-input>
+              <span>{{detailData.purchaseCode}}</span>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="出库时间：" prop="purchaseTime">
-              <el-date-picker v-model="detailData.purchaseTime" type="date" placeholder="选择日期"></el-date-picker>
+            <el-form-item label="出库时间：">
+              <span>{{detailData.purchaseTime}}</span>
             </el-form-item>
           </el-col>
           <el-col :span="8">
             <el-form-item label="是否出库：" prop="storage">
-              <el-select placeholder="请输入信息" clearable v-model="detailData.storage">
-                <el-option :value="true" label="是"></el-option>
-                <el-option :value="false" label="否"></el-option>
-              </el-select>
+              <span>{{detailData.storage?'是':'否'}}</span>
             </el-form-item>
           </el-col>
         </el-row>

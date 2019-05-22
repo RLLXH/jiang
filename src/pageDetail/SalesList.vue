@@ -5,7 +5,6 @@
         <el-form-item label="订单单号:">
           <el-input v-model="theQuery.shipmentCode"></el-input>
         </el-form-item>
-
         <el-form-item label="开始时间:">
           <el-date-picker v-model="theQuery.startTime" type="date" placeholder="选择日期"></el-date-picker>
         </el-form-item>
@@ -22,16 +21,17 @@
     </el-row>
     <el-table :data="dataList" style="width: 100%" border>
       <el-table-column label="序号" type="index" width="80"></el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column label="操作" width="210">
         <template slot-scope="scope">
           <div>
             <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
-            <el-button type="text" @click="detailBtn">编辑</el-button>
+            <el-button type="text" @click="mobileBtn(scope.row.id)"  v-if="!scope.row.storage">编辑</el-button>
             <el-button type="text" @click="deleteBtn(scope.row.id)" v-if="!scope.row.storage">删除</el-button>
+             <el-button type="text" @click="chuBtn(scope.row.id)" v-if="!scope.row.storage">出库</el-button>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="销售单号" prop="saleCode"></el-table-column>
+      <el-table-column label="销售单号" prop="shipmentCode"></el-table-column>
       <!-- <el-table-column label="类型" prop="saleType"></el-table-column> -->
       <el-table-column label="状态" prop="name">
         <template slot-scope="scope">
@@ -55,7 +55,7 @@
 </template>
 <script>
 import axios from "../api/axios.js";
-import { shipmentSelect, shipmentDelete } from "../api/address.js";
+import { shipmentSelect, shipmentDelete,storeroomOutput } from "../api/address.js";
 export default {
   data() {
     return {
@@ -76,6 +76,22 @@ export default {
     this.getList();
   },
   methods: {
+      chuBtn(row) {
+      let body={
+        id:row,
+        person:this.$store.state.loading.user.name
+      }
+      axios.post(storeroomOutput,body).then(data => {
+        this.$message.success("出库成功");
+        this.getList();
+      });
+    },
+    mobileBtn(row){
+       this.$router.push({
+        path: "/Index/saleListMobile",
+        query: { id: row }
+      });
+    },
     deleteBtn(row) {
       axios.delete(shipmentDelete + "?id=" + row).then(data => {
         this.$message.success("删除成功");
@@ -86,6 +102,7 @@ export default {
       axios.post(shipmentSelect, this.theQuery).then(data => {
         console.log(data);
         this.dataList = data.content;
+        
       });
     },
     //新增

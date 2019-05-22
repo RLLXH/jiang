@@ -39,9 +39,16 @@
         <el-form-item label="售价:" prop="goodsCode">
           <el-input v-model="postData.purchasePrice"></el-input>
         </el-form-item>
-
         <el-form-item label="厂商ID:" prop="supplierId">
-          <el-input v-model="postData.supplierId"></el-input>
+          <!-- <el-input v-model="postData.supplierId"></el-input> -->
+           <el-select placeholder="请输入信息" clearable v-model="postData.supplierId">
+            <el-option
+              v-for="(item,index) in supplierList"
+              :key="index"
+              :label="item.supplierName"
+              :value="item.id"
+            ></el-option>
+          </el-select>
         </el-form-item>
       </el-form>
       <el-row class="btnBox">
@@ -53,12 +60,13 @@
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { goodsInsert,categoryList,goodsSelectById,goodsUpdate } from "../../api/address.js";
+import { goodsInsert,categoryList,goodsSelectById,goodsUpdate,supplierSelectAll } from "../../api/address.js";
 export default {
   data() {
     return {
       categoryList:[],
       supplierList:[],
+
       postData: {
         categoryId: '', //细类ID
         goodsCode: "", //商品编号
@@ -129,6 +137,7 @@ export default {
   },
   created(){
     this.getcategoryList();
+    this.getsupplierList()
     if(this.$route.query.id){
       axios.post(goodsSelectById+'?id='+this.$route.query.id).then(
         data=>{
@@ -140,7 +149,12 @@ export default {
   },
   methods: {
 
-    getsupplierList(){},
+    getsupplierList(){
+      axios.post(supplierSelectAll).then(data=>{
+        console.log(data,'厂商')
+        this.supplierList=data
+      })
+    },
     getcategoryList(){
       axios.get(categoryList).then(data=>{
         console.log(data);
