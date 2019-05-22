@@ -1,9 +1,8 @@
 import axios from 'axios'
-import {
-    Message,
-    MessageBox
-} from 'element-ui';
-axios.defaults.baseURL = 'http://localhost:8888'
+import { Message } from 'element-ui';
+axios.defaults.baseURL = 'http://127.0.0.1:8888'
+
+axios.defaults.withCredentials = true;
 //添加请求拦截器
 
 axios.interceptors.request.use(
@@ -19,18 +18,12 @@ axios.interceptors.request.use(
 
 // axios.interceptors.response.headers()
 //添加响应拦截器
-
 axios.interceptors.response.use(
     res => {
         if(res.status == 200){
-            if(res.data.code=='0'){
-                return res.data.data
-            }else{
-              
-                Message.error(res.data.msg);
-                return Promise.reject(res);
-            }
-           
+
+            return res.data.data
+
         }else {
             return Promise.reject(res)
     }
