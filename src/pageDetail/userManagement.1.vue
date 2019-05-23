@@ -40,7 +40,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="新增用户" :visible.sync="dialogVisibleAdd" width="20%" center>
+    <el-dialog title="新增用户" :visible.sync="dialogVisibleAdd" width="40%" center>
       <el-form
         label-position="right"
         label-width="100px"
@@ -70,7 +70,7 @@
         <el-button>取消</el-button>
       </el-row>
     </el-dialog>
-    <el-dialog title="修改用户" :visible.sync="dialogVisibleUpadte" width="20%" center>
+    <el-dialog title="修改用户" :visible.sync="dialogVisibleUpadte" width="40%" center>
       <el-form
         label-position="right"
         label-width="100px"

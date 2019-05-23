@@ -42,13 +42,10 @@ export default {
   data() {
     return {
       theQuery: {
-        amount: null,
-        goodsCode: "",
-        goodsName: "",
+       
         pageNum: 1,
         pageSize: 20,
-        person: "",
-        updateTime: ""
+       
       },
       dataList: [
       ]
@@ -59,7 +56,7 @@ export default {
   },
   methods: {
     getList() {
-      axios.post(storeroomSelect, this.theQuery).then(data => {
+      axios.post(storeroomSelect+'?pageNum='+this.theQuery.pageNum+'&pageSize='+this.theQuery.pageSize).then(data => {
         console.log(data);
         this.dataList=data.content
       });
