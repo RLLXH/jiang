@@ -55,8 +55,8 @@ export default {
   justify-content: center;
   align-items: Center;
   width: 100%;
-  height: 100%;
-   background: DodgerBlue;  
+  height: 100%;  
+ background:url(../assets/背景.jpg) no-repeat;
 .loadingBox {
   display: flex;
   justify-content: center;

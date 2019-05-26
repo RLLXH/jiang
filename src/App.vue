@@ -27,12 +27,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
-  color: #2c3e50;
+  // color: blue;
   height: 100%;
   width: @percent;
+
   //表格样式统一设置
   .el-table--border th {
-    background-color: #F0FFF0;
+    background-color: #808F9F;
+    color: aliceblue;
     text-align: center;
   }//表头背景颜色
   .el-table td{
@@ -44,7 +46,7 @@ html {
    background-color:	#F5F5F5;
   }//背景
  .el-menu-item.is-active{
-    background-color:#87CEEB
+    background-color:#808F9F
   }//侧栏选中颜色
 }
 //输入框长度

@@ -9,9 +9,9 @@
         ref="postData"
         :rules="rules"
       >
-        <el-form-item label="商品编号:" prop="goodsCode">
+        <!-- <el-form-item label="商品编号:" prop="goodsCode">
           <el-input v-model="postData.goodsCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="商品类:" prop="categoryId">
           <el-select placeholder="请输入信息" clearable v-model="postData.categoryId">
             <el-option
@@ -27,19 +27,19 @@
           <el-input v-model="postData.goodsName"></el-input>
         </el-form-item>
 
-        <el-form-item label="商品规格:" prop="goodsCode">
+        <el-form-item label="商品规格:" prop="goodsSpecification">
           <el-input v-model="postData.goodsSpecification"></el-input>
         </el-form-item>
-        <el-form-item label="计量单位:" prop="goodsCode">
+        <el-form-item label="计量单位:" prop="goodsUnit">
           <el-input v-model="postData.goodsUnit"></el-input>
         </el-form-item>
-        <el-form-item label="进价:" prop="goodsCode">
+        <el-form-item label="进价:" prop="goodsPrice">
           <el-input v-model="postData.goodsPrice"></el-input>
         </el-form-item>
-        <el-form-item label="售价:" prop="goodsCode">
+        <el-form-item label="售价:" prop="purchasePrice">
           <el-input v-model="postData.purchasePrice"></el-input>
         </el-form-item>
-        <el-form-item label="厂商ID:" prop="supplierId">
+        <el-form-item label="厂商:" prop="supplierId">
           <!-- <el-input v-model="postData.supplierId"></el-input> -->
            <el-select placeholder="请输入信息" clearable v-model="postData.supplierId">
             <el-option

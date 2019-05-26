@@ -29,6 +29,7 @@ import saleListDetail from '../pageDetail/salesList/saleListDetail.vue'
 import salesListAddNew from '../pageDetail/salesList/salesListAddNew.vue'
 import loading from '../components/loadIng.vue'
 import saleListMobile from '../pageDetail/salesList/saleListMobile.vue'
+import totalInventoryDetail from '../pageDetail/totalInventory/totalInventoryDetail.vue'
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -142,6 +143,10 @@ export default new Router({
         path:'saleListMobile',
         name:'销售单修改',
         component:saleListMobile
+      },{
+        path:'totalInventoryDetail',
+        name:'库存详情',
+        component:totalInventoryDetail
       }
 
       ]

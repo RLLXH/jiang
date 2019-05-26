@@ -16,9 +16,9 @@
     <el-table :data="dataList" style="width: 100%" border>
       <el-table-column label="序号" type="index" width="80"></el-table-column>
       <el-table-column label="操作" width="180">
-        <template>
+        <template slot-scope='scope'>
           <div>
-            <el-button type="text" @click="detailBtn">查看</el-button>
+            <el-button type="text" @click="detailBtn(scope.row.id)">查看</el-button>
           </div>
         </template>
       </el-table-column>
@@ -69,11 +69,10 @@ export default {
       });
     },
     //详情
-    detailBtn() {
-      console.log("121");
+    detailBtn(row) {
       this.$router.push({
-        path: "/Index/refundManageDetail",
-        query: {}
+        path: "/Index/totalInventoryDetail",
+        query: {id:row}
       });
     },
     Btn() {

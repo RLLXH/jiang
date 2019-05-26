@@ -40,6 +40,7 @@ export const purchaseUpdate='/purchase/update'//更新采购单
 export const storeroomSelect='/storeroom/selectAll'//商品库存动态分页显示
 export const storeroomInsert='/storeroom/insert'//商品进库
 export const storeroomOutput='/storeroom/output'//商品出库
+export const storeroomSelectInfo='/storeroom/selectInfo'//根据商品id查询交易记录
 //销售
 export const shipmentDelete='/shipment/delete'//删除
 export const shipmentInsert='/shipment/insert'//生成销售单

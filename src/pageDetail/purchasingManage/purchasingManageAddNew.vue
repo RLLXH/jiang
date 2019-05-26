@@ -48,12 +48,12 @@
         <!-- <el-form-item label="发货仓库:">
           <span></span>
         </el-form-item>-->
-        <el-form-item label="操作人:" prop="person">
+        <!-- <el-form-item label="操作人:" prop="person">
           <el-input v-model="postData.person"></el-input>
-        </el-form-item>
-        <el-form-item label="订单编号:" prop="purchaseCode">
+        </el-form-item> -->
+        <!-- <el-form-item label="订单编号:" prop="purchaseCode">
           <el-input v-model="postData.purchaseCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <!-- <el-form-item label="收货人电话:">
           <el-input></el-input>
         </el-form-item>
@@ -122,12 +122,12 @@ export default {
         goodsShelfLife: null,
         pageNum: 1,
         pageSize: 20000,
-        person: null,
+        person:'' ,
         supplierId: null,
         supplierName: null
       },
       postData: {
-        person: "",
+        person: this.$store.state.loading.user.name,
         purchaseCode: "",
         purchaseDetailForms: [],
         purchaseTime: "",

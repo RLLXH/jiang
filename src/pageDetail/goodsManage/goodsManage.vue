@@ -116,19 +116,20 @@ export default {
     getList() {
       axios.post(goodsSelect,this.theQuery).then(data=>{
         console.log(data)
-        data.content.map((v,k)=>{
-          this.supplierList.map((v1=>{
-            if(v.supplierId=v1.id){
-              v.supplierName=v1.supplierName
-            }
-            }))
-            this.categoryList.map((v1=>{
-            if(v.categoryId=v1.id){
+        this.dataList=data.content;
+        this.dataList.map((v,k)=>{
+          console.log(v.categoryId,'类别id')
+          this.categoryList.map((v1,k1)=>{
+            if(v.categoryId==v1.id){
               v.categoryName=v1.categoryName
             }
-            }))
+          })
+          this.supplierList.map((v1,k1)=>{
+            if(v.supplierId==v1.id){
+              v.supplierName=v1.supplierName
+            }
+          })
         })
-        this.dataList=data.content
           this.pageNum = data.totalElements;
       });
     },

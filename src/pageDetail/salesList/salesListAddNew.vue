@@ -2,8 +2,8 @@
   <div>
     <div class="stepbox">
       <el-steps finish-status="success" :active="active" :space="200" class="setpboslit">
-        <el-step title="选择采购商品"></el-step>
-        <el-step title="生成采购单"></el-step>
+        <el-step title="选择销售商品"></el-step>
+        <el-step title="生成销售单"></el-step>
         <el-step title="完成"></el-step>
       </el-steps>
     </div>
@@ -16,12 +16,12 @@
         :model="postDate"
         ref="postDate"
       >
-        <el-form-item label="商品名称:">
+        <!-- <el-form-item label="商品名称:">
           <el-input v-model="theQuery.goodsName"></el-input>
         </el-form-item>
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
       <el-table :data="dataList" style="width: 100%" border @selection-change="selection">
         <el-table-column label="序号" type="index" width="80"></el-table-column>
@@ -205,12 +205,11 @@ export default {
   methods: {
     getList() {
       let body = {
-        goodsName: this.theQuery.goodsName,
         pageNum: 1,
         pageSize: 200000
       };
 
-      axios.post(storeroomSelect, body).then(data => {
+      axios.post(storeroomSelect+'?pageSize=200000&pageNum=1').then(data => {
         console.log(data);
         this.dataList = data.content;
       });
