@@ -183,7 +183,7 @@ export default {
         endTime: "",
         pageNum: 0,
         pageSize: 0,
-        person: "",
+        person: this.$store.state.loading.user.name,
         shipmentCode: "",
         shipmentDetailForms: [
          

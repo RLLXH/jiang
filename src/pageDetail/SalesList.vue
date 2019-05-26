@@ -31,12 +31,14 @@
           </div>
         </template>
       </el-table-column>
+        <el-table-column label="操作人员" prop="person"></el-table-column>
       <el-table-column label="销售单号" prop="shipmentCode"></el-table-column>
+        <el-table-column label="采购时间" prop="storeTime"></el-table-column>
       <!-- <el-table-column label="类型" prop="saleType"></el-table-column> -->
-      <el-table-column label="状态" prop="name">
+      <el-table-column label="是否出库" prop="name">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.storage?'已处库':'未出库'}}</span>
+            <span>{{scope.row.storage?'已出库':'未出库'}}</span>
           </div>
         </template>
       </el-table-column>

@@ -63,7 +63,10 @@ export default {
   align-items: Center;
  
   .el-button{
-    width: 210px;
+    width: 400px;
+  }
+  .el-input{
+    width: 400px;
   }
   /deep/.el-form-item{
     display: block;

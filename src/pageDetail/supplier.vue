@@ -11,9 +11,9 @@
         <el-form-item label="供应商电话:">
           <el-input v-model="theQuery.supplierPhone"></el-input>
         </el-form-item>
-        <el-form-item label="供应商编号:">
+        <!-- <el-form-item label="供应商编号:">
           <el-input v-model="theQuery.supplierCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
         </el-form-item>
@@ -34,7 +34,7 @@
       </el-table-column>
       <el-table-column label="供应商名" prop="supplierName"></el-table-column>
       <el-table-column label="供应商地址" prop="supplierAddress"></el-table-column>
-      <el-table-column label="供应商编码" prop="supplierCode"></el-table-column>
+      <!-- <el-table-column label="供应商编码" prop="supplierCode"></el-table-column> -->
       <el-table-column label="供应商电话" prop="supplierPhone"></el-table-column>
       <el-table-column label="供应商官网" prop="supplierWeb"></el-table-column>
     </el-table>
@@ -54,9 +54,9 @@
         <el-form-item label="供应商地址:" prop="supplierAddress">
           <el-input v-model="postData.supplierAddress"></el-input>
         </el-form-item>
-        <el-form-item label="供应商编码:" prop="supplierEvaluate">
+        <!-- <el-form-item label="供应商编码:" prop="supplierEvaluate">
           <el-input v-model="postData.supplierCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="供应商电话:" prop="supplierPhone">
           <el-input v-model="postData.supplierPhone"></el-input>
         </el-form-item>
@@ -84,9 +84,9 @@
         <el-form-item label="供应商地址:" prop="supplierAddress">
           <el-input v-model="updateData.supplierAddress"></el-input>
         </el-form-item>
-        <el-form-item label="供应商编码:" prop="supplierEvaluate">
+        <!-- <el-form-item label="供应商编码:" prop="supplierEvaluate">
           <el-input v-model="updateData.supplierCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="供应商电话:" prop="supplierPhone">
           <el-input v-model="updateData.supplierPhone"></el-input>
         </el-form-item>
