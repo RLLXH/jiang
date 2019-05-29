@@ -11,6 +11,12 @@
         <el-form-item label="结束时间:">
           <el-date-picker v-model="theQuery.endTime" type="date" placeholder="选择日期"></el-date-picker>
         </el-form-item>
+         <el-form-item label="是否出库:">
+          <el-select placeholder="请输入信息" clearable v-model="theQuery.storage">
+            <el-option :value="true" label="是"></el-option>
+            <el-option :value="false" label="否"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
         </el-form-item>

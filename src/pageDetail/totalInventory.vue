@@ -2,12 +2,12 @@
   <div>
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <el-form-item label="商品名称:">
+        <!-- <el-form-item label="商品名称:">
           <el-input v-model="theQuery.goodsName"></el-input>
         </el-form-item>
         <el-form-item label=" ">
           <el-button @click="getList">查询</el-button>
-        </el-form-item>
+        </el-form-item> -->
       </el-form>
     </div>
     <!-- <el-row>

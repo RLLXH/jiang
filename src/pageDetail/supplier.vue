@@ -51,8 +51,14 @@
         <el-form-item label="供应商名:" prop="supplierName">
           <el-input v-model="postData.supplierName"></el-input>
         </el-form-item>
-        <el-form-item label="供应商地址:" prop="supplierAddress">
-          <el-input v-model="postData.supplierAddress"></el-input>
+        <el-form-item label="供应商地址:">
+           <el-cascader
+            :options="options"
+            v-model="address"
+            @active-item-change="handleItemChange"
+            :props="props"
+          ></el-cascader>
+          <!-- <el-input v-model="postData.supplierAddress"></el-input> -->
         </el-form-item>
         <!-- <el-form-item label="供应商编码:" prop="supplierEvaluate">
           <el-input v-model="postData.supplierCode"></el-input>
@@ -82,7 +88,8 @@
           <el-input v-model="updateData.supplierName"></el-input>
         </el-form-item>
         <el-form-item label="供应商地址:" prop="supplierAddress">
-          <el-input v-model="updateData.supplierAddress"></el-input>
+          <span class="spanBox">{{updateData.supplierAddress}}</span>
+         
         </el-form-item>
         <!-- <el-form-item label="供应商编码:" prop="supplierEvaluate">
           <el-input v-model="updateData.supplierCode"></el-input>
@@ -107,7 +114,10 @@ import {
   supplierINsert,
   supplierSelect,
   supplierDelete,
-  supplierUpdate
+  supplierUpdate,
+   provinceSelect,
+  provinceCity,
+  provinceArea,
 } from "../api/address.js";
 import paging from '../components/paging.vue'
 export default {
@@ -116,6 +126,13 @@ export default {
   },
   data() {
     return {
+        options: [],
+      address: null,
+      props: {
+        label: "province",
+        value: "provinceid",
+        children: "children"
+      },
       dialogVisibleDetail: false,
       dialogVisibleAdd: false,
       pageNum:'',
@@ -153,8 +170,54 @@ export default {
   },
   created() {
     this.getList();
+    this.gitSelect();
   },
   methods: {
+      //级联
+    handleItemChange(val) {
+      axios.post(provinceCity + "?procinceid=" + val[0]).then(data => {
+        this.options.map((v, k) => {
+          if (v.provinceid == val[0]) {
+            this.$set(v, "children", data);
+            v.children.map((v1, k1) => {
+              this.$set(v1, "province", v1.city);
+              this.$set(v1, "provinceid", v1.cityid);
+              v1.children = [];
+              this.options.push();
+            });
+          }
+        });
+      });
+      if (val[1]) {
+        axios.post(provinceArea + "?cityid=" + val[1]).then(data => {
+          this.options.map(v => {
+            if (v.provinceid == val[0]) {
+              v.children.map(v1 => {
+                if (v1.provinceid == val[1]) {
+                  v1.children = data;
+                  v1.children.map(v3 => {
+                    this.$set(v3, "province", v3.area);
+                    this.$set(v3, "provinceid", v3.areaid);
+                    this.options.push();
+                  });
+                }
+              });
+            }
+          });
+        });
+      }
+     
+    },
+    //获取省
+    gitSelect() {
+      axios.post(provinceSelect).then(data => {
+        this.options = data;
+        this.options.map((v, k) => {
+          v.children = [];
+        });
+        this.options.push();
+      });
+    },
      //分页
     pageFlag: function(data) {
       this.theQuery.pageNum = data.pageNo;
@@ -198,6 +261,22 @@ export default {
     postBtn(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+       
+                this.options.map(v=>{
+       if(v.provinceid == this.address[0]){
+         this.postData.supplierAddress = v.province;
+         v.children.map(v1=>{
+            if(v1.provinceid == this.address[1]){
+         this.postData.supplierAddress += v1.province;
+         v1.children.map(v2=>{
+           if(v2.provinceid == this.address[2]){
+             this.postData.supplierAddress += v2.province;
+           }
+         })
+         }
+         })
+       }
+     })
           axios.post(supplierINsert, this.postData).then(data => {
             this.$message.success("新增成功");
             this.getList();
@@ -231,5 +310,8 @@ export default {
 }
 .dialogBtnBox {
   text-align: center;
+}
+.spanBox{
+  width: 210px;
 }
 </style>

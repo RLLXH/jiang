@@ -9,15 +9,16 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="订单单号：">
+            <el-form-item label="订单编号：">
               <span>{{detailData.shipmentCode}}</span>
             </el-form-item>
           </el-col>
-          <!-- <el-col :span="8">
-            <el-form-item label="订单类型：">
-             <span>{{detailData.saleType}}</span>
+          <el-col :span="8">
+            <el-form-item label="入库时间：">
+             <span>{{detailData.storeTime}}</span>
             </el-form-item>
-          </el-col>-->
+          </el-col>
+
           <el-col :span="8">
             <el-form-item label="订单状态：">
               <span>{{detailData.storage?'已出库':'未出库'}}</span>
@@ -28,11 +29,11 @@
               <span>{{detailData.createTime}}</span>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <!-- <el-col :span="8">
             <el-form-item label="预计到货时间：">
               <span>{{detailData.storeTime}}</span>
             </el-form-item>
-          </el-col>
+          </el-col> -->
          
         </el-row>
       </el-form>
@@ -107,7 +108,7 @@ import axios from "../../api/axios.js";
 import {
   shipmentSelectDetail,
   shipmentUpdate,
-  storeroomSelect
+  roomList
 } from "../../api/address.js";
 export default {
   data() {
@@ -156,7 +157,7 @@ export default {
               pageSize: 20,
               goodsName: v.goodsDTO.goodsName
             };
-            axios.post(storeroomSelect, bb).then(data => {
+            axios.post(roomList, bb).then(data => {
               v.storageNum = data.content[0].amount;
             });
           });

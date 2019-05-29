@@ -2,18 +2,7 @@
   <div>
     <div>
       <el-form label-position="right" label-width="100px" :inline="true">
-        <!-- <el-form-item label="用户名称:">
-          <el-input></el-input>
-        </el-form-item> -->
-        <!-- <el-form-item label="用户编号:">
-          <el-input></el-input>
-        </el-form-item> -->
-        <!-- <el-form-item label="是否禁用:">
-          <el-input></el-input>
-        </el-form-item> -->
-        <!-- <el-form-item label=" ">
-          <el-button>查询</el-button>
-        </el-form-item> -->
+       
       </el-form>
     </div>
     <el-row>
@@ -60,8 +49,8 @@
         </el-form-item>
         <el-form-item label="用户权限:">
           <el-select v-model="addData.roleListId">
-            <el-option value="2" label="管理员"></el-option>
-            <el-option value="3" label="一般用户"></el-option>
+            <el-option value="2" label="administrators"></el-option>
+            <el-option value="3" label="admin"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -87,8 +76,8 @@
         </el-form-item>
         <el-form-item label="用户权限:">
           <el-select v-model="updateData.roleListId">
-            <el-option value="2" label="管理员"></el-option>
-            <el-option value="3" label="一般用户"></el-option>
+            <el-option value="2" label="administrators"></el-option>
+            <el-option value="3" label="admin"></el-option>
           </el-select>
         </el-form-item>
          <el-form-item label="新密码:">

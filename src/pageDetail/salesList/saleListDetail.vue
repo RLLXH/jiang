@@ -10,7 +10,7 @@
           </el-col>
           <el-col :span="8">
 
-            <el-form-item label="订单单号：">
+            <el-form-item label="订单编号：">
              <span>{{detailData.shipmentCode}}</span>
             </el-form-item>
           </el-col>
@@ -19,6 +19,11 @@
              <span>{{detailData.saleType}}</span>
             </el-form-item>
           </el-col> -->
+               <el-col :span="8">
+            <el-form-item label="入库时间：">
+             <span>{{detailData.storeTime}}</span>
+            </el-form-item>
+          </el-col>
           <el-col :span="8">
             <el-form-item label="订单状态：">
              <span>{{detailData.storage?'已出库':'未出库'}}</span>
@@ -29,11 +34,11 @@
              <span>{{detailData.createTime}}</span>
             </el-form-item>
           </el-col>
-           <el-col :span="8">
+           <!-- <el-col :span="8">
             <el-form-item label="预计到货时间：">
              <span>{{detailData.storeTime}}</span>
             </el-form-item>
-          </el-col>
+          </el-col> -->
           <!-- <el-col :span="8">
             <el-form-item label="发货仓库：">
              <span>{{detailData.storageRoomDTO?detailData.storageRoomDTO.storageRoomName:''}}</span>
@@ -127,7 +132,7 @@
             </div>
           </template>
         </el-table-column> -->
-        <el-table-column label="库存" prop="goodsNumber"></el-table-column>
+        <el-table-column label="库存" prop="storageNum"></el-table-column>
         <el-table-column label="商品数量" prop="goodsNumber">
         </el-table-column>
         <el-table-column label="商品总价" prop="name">
@@ -145,7 +150,7 @@
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { shipmentSelectDetail } from "../../api/address.js";
+import { shipmentSelectDetail,roomList } from "../../api/address.js";
 export default {
   data() {
     return {
@@ -164,6 +169,16 @@ export default {
           console.log(data, "销售单详情");
           this.detailData=data;
           this.dataList=data.shipmentDetailDTOS
+             this.dataList.map((v, k) => {
+            let bb = {
+              pageNum: 1,
+              pageSize: 20,
+              goodsName: v.goodsDTO.goodsName
+            };
+            axios.post(roomList, bb).then(data => {
+              v.storageNum = data.content[0].amount;
+            });
+          });
         });
     },
     Btn() {

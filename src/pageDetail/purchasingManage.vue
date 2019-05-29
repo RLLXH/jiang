@@ -5,8 +5,11 @@
         <el-form-item label="订单编号:">
           <el-input v-model="theQuery.purchaseCode"></el-input>
         </el-form-item>
-        <el-form-item label="入库时间:">
-          <el-input></el-input>
+       <el-form-item label="开始时间:">
+          <el-date-picker v-model="theQuery.startTime" type="date" placeholder="选择日期"></el-date-picker>
+        </el-form-item>
+        <el-form-item label="结束时间:">
+          <el-date-picker v-model="theQuery.endTime" type="date" placeholder="选择日期"></el-date-picker>
         </el-form-item>
         <el-form-item label="是否出库:">
           <el-select placeholder="请输入信息" clearable v-model="theQuery.storage">
@@ -57,6 +60,8 @@ export default {
     return {
       pageNum: "",
       theQuery: {
+        startTime:null,
+        endTime:null,
         pageNum: 1,
         pageSize: 20,
         person: "",

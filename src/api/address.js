@@ -38,7 +38,8 @@ export const purchaseSelectDetail='/purchase/selectId'//获取采购单详情
 export const purchaseDelete='/purchase/delete'//删除 
 export const purchaseUpdate='/purchase/update'//更新采购单
 //库存
-export const storeroomSelect='/storeroom/selectAll'//商品库存动态分页显示
+export const storeroomSelect='/storeroom/selectAll'//商品库存所有
+export const roomList='/storeroom/select'//商品库存动态分页显示
 export const storeroomInsert='/storeroom/insert'//商品进库
 export const storeroomOutput='/storeroom/output'//商品出库
 export const storeroomSelectInfo='/storeroom/selectInfo'//根据商品id查询交易记录
@@ -50,3 +51,7 @@ export const shipmentSelectDetail='/shipment/selectDetail'//获取销售单详�
 export const shipmentUpdate='/shipment/update'//更新采购单
 //登录
 export const userInfoLogin='/userInfo/login'//登陆
+//省市区
+export const provinceSelect='/province/select'//查找省份
+export const provinceCity = '/province/selectCity'//查找市
+export const provinceArea = '/province/selectArea'//查找区县

@@ -15,7 +15,12 @@
           </el-col>
           <el-col :span="8">
             <el-form-item label="出库时间：">
-              <span>{{detailData.purchaseTime}}</span>
+              <span>{{detailData.storeTime}}</span>
+            </el-form-item>
+          </el-col>
+             <el-col :span="8">
+            <el-form-item label="订单状态：">
+             <span>{{detailData.storage?'已入库':'未入库'}}</span>
             </el-form-item>
           </el-col>
            <el-col :span="8">
@@ -23,11 +28,11 @@
              <span>{{detailData.createTime}}</span>
             </el-form-item>
           </el-col>
-          <el-col :span="8">
+          <!-- <el-col :span="8">
             <el-form-item label="是否出库：">
               <span>{{detailData.storage?'是':'否'}}</span>
             </el-form-item>
-          </el-col>
+          </el-col> -->
         </el-row>
       </el-form>
     </div>
