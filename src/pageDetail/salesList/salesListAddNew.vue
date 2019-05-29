@@ -81,10 +81,10 @@
     <!-- 确认出库单 -->
     <div class="choseBbox" v-show="active==1">
       <el-form label-position="right" label-width="100px" :inline="true">
-  
+<!--   
         <el-form-item label="销售单号：">
           <el-input v-model="postDate.shipmentCode"></el-input>
-        </el-form-item>
+        </el-form-item> -->
         <!-- <el-form-item label="销售方式：">
           <el-input v-model="postDate.salesSlipMethod"></el-input>
         </el-form-item>
