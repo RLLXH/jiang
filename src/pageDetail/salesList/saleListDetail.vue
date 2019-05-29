@@ -3,7 +3,13 @@
     <div>
       <el-form label-position="right" label-width="120px" :inline="true">
         <el-row>
+            <el-col :span="8">
+            <el-form-item label="操作人员：">
+              <span>{{detailData.person}}</span>
+            </el-form-item>
+          </el-col>
           <el-col :span="8">
+
             <el-form-item label="订单单号：">
              <span>{{detailData.shipmentCode}}</span>
             </el-form-item>
@@ -89,7 +95,7 @@
         <el-table-column label="商类类别" prop="categoryId">
           <template slot-scope="scope">
             <div>
-              <span>{{scope.row.goodsDTO.categoryId}}</span>
+              <span>{{scope.row.goodsDTO.categoryName}}</span>
             </div>
           </template>
         </el-table-column>
@@ -110,7 +116,7 @@
         <el-table-column label="供应商" prop="supplierId">
           <template slot-scope="scope">
             <div>
-              <span>{{scope.row.goodsDTO.supplierId}}</span>
+              <span>{{scope.row.goodsDTO.supplierName}}</span>
             </div>
           </template>
         </el-table-column>
@@ -122,12 +128,7 @@
           </template>
         </el-table-column> -->
         <el-table-column label="库存" prop="goodsNumber"></el-table-column>
-        <el-table-column label="商品数量" prop="num">
-          <template slot-scope="scope">
-            <div>
-              <el-input v-model="scope.row.goodsNumber"></el-input>
-            </div>
-          </template>
+        <el-table-column label="商品数量" prop="goodsNumber">
         </el-table-column>
         <el-table-column label="商品总价" prop="name">
           <template slot-scope="scope">

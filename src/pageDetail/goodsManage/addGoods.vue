@@ -13,6 +13,12 @@
           <el-input v-model="postData.goodsCode"></el-input>
         </el-form-item> -->
         <el-form-item label="商品类:" prop="categoryId">
+           <el-cascader
+            :options="options"
+            v-model="category"
+          
+            :props="props"
+          ></el-cascader>
           <el-select placeholder="请输入信息" clearable v-model="postData.categoryId">
             <el-option
               v-for="(item,index) in categoryList"
@@ -22,11 +28,9 @@
             ></el-option>
           </el-select>
         </el-form-item>
-
         <el-form-item label="商品名称:" prop="goodsName">
           <el-input v-model="postData.goodsName"></el-input>
         </el-form-item>
-
         <el-form-item label="商品规格:" prop="goodsSpecification">
           <el-input v-model="postData.goodsSpecification"></el-input>
         </el-form-item>
@@ -40,7 +44,7 @@
           <el-input v-model="postData.purchasePrice"></el-input>
         </el-form-item>
         <el-form-item label="厂商:" prop="supplierId">
-          <!-- <el-input v-model="postData.supplierId"></el-input> -->
+          
            <el-select placeholder="请输入信息" clearable v-model="postData.supplierId">
             <el-option
               v-for="(item,index) in supplierList"
@@ -60,13 +64,19 @@
 </template>
 <script>
 import axios from "../../api/axios.js";
-import { goodsInsert,categoryList,goodsSelectById,goodsUpdate,supplierSelectAll } from "../../api/address.js";
+import { goodsInsert,categoryList,goodsSelectById,goodsUpdate,supplierSelectAll,category } from "../../api/address.js";
 export default {
   data() {
     return {
       categoryList:[],
       supplierList:[],
-
+      options: [],
+      category: null,
+      props: {
+        label: "categoryName",
+        value: "id",
+        children: "children"
+      },
       postData: {
         categoryId: '', //细类ID
         goodsCode: "", //商品编号
@@ -138,6 +148,7 @@ export default {
   created(){
     this.getcategoryList();
     this.getsupplierList()
+    this.getBiglist();
     if(this.$route.query.id){
       axios.post(goodsSelectById+'?id='+this.$route.query.id).then(
         data=>{
@@ -148,7 +159,15 @@ export default {
     }
   },
   methods: {
+      getBiglist() {
+      axios.get(category).then(data => {
+        this.options = data;
+        this.options.map(v=>{
+          v.children = [];
+        })
 
+      });
+    },
     getsupplierList(){
       axios.post(supplierSelectAll).then(data=>{
         console.log(data,'厂商')

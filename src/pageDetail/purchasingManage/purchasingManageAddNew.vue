@@ -29,10 +29,10 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="生产日期" prop="goodsDate"></el-table-column>
+        <!-- <el-table-column label="生产日期" prop="goodsDate"></el-table-column> -->
 
         <el-table-column label="单价" prop="goodsPrice"></el-table-column>
-        <el-table-column label="保质期" prop="goodsShelfLife"></el-table-column>
+        <!-- <el-table-column label="保质期" prop="goodsShelfLife"></el-table-column> -->
       </el-table>
     </div>
     <!-- 确认出库单 -->

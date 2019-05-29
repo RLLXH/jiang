@@ -3,6 +3,11 @@
     <div>
       <el-form label-position="right" label-width="120px" :inline="true">
         <el-row>
+            <el-col :span="8">
+            <el-form-item label="操作人员：">
+              <span>{{detailData.person}}</span>
+            </el-form-item>
+          </el-col>
           <el-col :span="8">
             <el-form-item label="订单单号：">
               <span>{{detailData.shipmentCode}}</span>
@@ -28,41 +33,7 @@
               <span>{{detailData.storeTime}}</span>
             </el-form-item>
           </el-col>
-          <!-- <el-col :span="8">
-            <el-form-item label="发货仓库：">
-             <span>{{detailData.storageRoomDTO?detailData.storageRoomDTO.storageRoomName:''}}</span>
-            </el-form-item>
-          </el-col>-->
-          <!-- <el-col :span="8">
-            <el-form-item label="订单数量：">
-             <span>{{detailData.}}</span>
-            </el-form-item>
-          </el-col>-->
-          <!-- <el-col :span="8">
-            <el-form-item label="订单金额：">
-             <span>{{detailData.}}</span>
-            </el-form-item>
-          </el-col>-->
-          <!-- <el-col :span="8">
-            <el-form-item label="收货人：">
-             <span>{{detailData.person}}</span>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收货人电话：">
-             <span>{{detailData.phone}}</span>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="收货人地址：">
-             <span>{{detailData.address}}</span>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item label="详细地址：">
-             <span>{{detailData.addressDetail}}</span>
-            </el-form-item>
-          </el-col>-->
+         
         </el-row>
       </el-form>
     </div>
@@ -89,17 +60,11 @@
       <el-table-column label="商类类别" prop="categoryId">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.goodsDTO.categoryId}}</span>
+            <span>{{scope.row.goodsDTO.categoryName}}</span>
           </div>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="商品属性" prop="goodsAttributel">
-          <template slot-scope="scope">
-            <div>
-              <span>{{scope.row.goodsDTO.goodsAttributel}}</span>
-            </div>
-          </template>
-      </el-table-column>-->
+     
       <el-table-column label="商品单价" prop="goodsPrice">
         <template slot-scope="scope">
           <div>
@@ -110,17 +75,11 @@
       <el-table-column label="供应商" prop="supplierId">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.goodsDTO.supplierId}}</span>
+            <span>{{scope.row.goodsDTO.supplierName}}</span>
           </div>
         </template>
       </el-table-column>
-      <!-- <el-table-column label="供应渠道" prop="goodsChannel">
-          <template slot-scope="scope">
-            <div>
-              <span>{{scope.row.goodsDTO.goodsChannel}}</span>
-            </div>
-          </template>
-      </el-table-column>-->
+     
       <el-table-column label="库存" prop="storageNum"></el-table-column>
       <el-table-column label="商品数量" prop="num">
         <template slot-scope="scope">
@@ -159,8 +118,31 @@ export default {
   },
   created() {
     this.getDetail();
+    // this.getcategoryList();
+    // this.getsupplierList();
   },
   methods: {
+       getsupplierList() {
+         let bosy = {
+        pageNum: 1,
+        pageSize: 200000,
+        supplierAddress: "",
+        supplierCode: "",
+        supplierName: "",
+        supplierPhone: "",
+        supplierWeb: ""
+      }
+      axios.post(supplierSelect, body).then(data => {
+        console.log(data);
+        this.supplierList == data.content;
+      });
+    },
+      getcategoryList(){
+      axios.get(categoryList).then(data=>{
+        console.log(data);
+        this.categoryList=data;
+      })},
+
     getDetail() {
       axios
         .post(shipmentSelectDetail + "?id=" + this.$route.query.id)

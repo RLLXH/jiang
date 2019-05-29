@@ -18,6 +18,11 @@
               <span>{{detailData.purchaseTime}}</span>
             </el-form-item>
           </el-col>
+           <el-col :span="8">
+            <el-form-item label="创建时间：">
+             <span>{{detailData.createTime}}</span>
+            </el-form-item>
+          </el-col>
           <el-col :span="8">
             <el-form-item label="是否出库：">
               <span>{{detailData.storage?'是':'否'}}</span>
@@ -42,17 +47,24 @@
       <el-table-column label="商类类别" prop="name">
         <template slot-scope="scope">
           <div>
-            <span>{{scope.row.goodsDTO.categoryId}}</span>
+            <span>{{scope.row.goodsDTO.categoryName}}</span>
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="生产日期" prop="goodsDate">
+       <el-table-column label="商品编号" prop="goodsCode">
+          <template slot-scope="scope">
+            <div>
+              <span>{{scope.row.goodsDTO.goodsCode}}</span>
+            </div>
+          </template>
+        </el-table-column>
+      <!-- <el-table-column label="生产日期" prop="goodsDate">
         <template slot-scope="scope">
           <div>
             <span>{{scope.row.goodsDTO.goodsDate}}</span>
           </div>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column label="单价" prop="goodsPrice">
         <template slot-scope="scope">
@@ -61,14 +73,29 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="保质期" prop="goodsShelfLife">
+       <el-table-column label="供应商" prop="supplierId">
+          <template slot-scope="scope">
+            <div>
+              <span>{{scope.row.goodsDTO.supplierName}}</span>
+            </div>
+          </template>
+        </el-table-column>
+      <!-- <el-table-column label="保质期" prop="goodsShelfLife">
         <template slot-scope="scope">
           <div>
             <span>{{scope.row.goodsDTO.goodsShelfLife}}</span>
           </div>
         </template>
-      </el-table-column>
-      <el-table-column label="数量" prop="goodsNumber"></el-table-column>
+      </el-table-column> -->
+       <el-table-column label="商品数量" prop="goodsNumber"> </el-table-column>
+      <el-table-column label="商品总价" prop="name">
+          <template slot-scope="scope">
+            <div>
+              <span>{{scope.row.goodsNumber?scope.row.goodsNumber*scope.row.goodsDTO.goodsPrice:''}}</span>
+            </div>
+          </template> 
+        </el-table-column>
+     
     </el-table>
      <el-row class="btnBox">
         

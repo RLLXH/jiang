@@ -44,6 +44,7 @@
           </div>
         </template>
       </el-table-column>
+      <el-table-column label="创建时间" prop="createTime"></el-table-column>
     </el-table>
     <paging v-on:pageFlag="pageFlag" :pageNum="pageNum" :theQuery="theQuery"></paging>
   </div>
