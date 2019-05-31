@@ -152,7 +152,7 @@
         <el-table-column label="商品数量" prop="num">
           <template slot-scope="scope">
             <div>
-              <el-input v-model="scope.row.num"></el-input>
+              <el-input v-model="scope.row.num" @input="inputhandel(scope.row)"></el-input>
             </div>
           </template>
         </el-table-column>
@@ -203,6 +203,12 @@ export default {
     this.getList();
   },
   methods: {
+    inputhandel(row){
+      if(row.num>row.amount){
+        row.num = null;
+        this.$message.warning('数量不能大于库存')
+      }
+    },
     getList() {
       let body = {
         pageNum: 1,
@@ -216,20 +222,29 @@ export default {
     },
     postBtn() {
       // this.$router.go(-1);
-
+        let flag = true
       this.theSelection.map((v, k) => {
-        let obj = {
+        if(v.num){
+            let obj = {
           goodsId: v.goodsDTO.id,
           goodsNumber: v.num - 0
         };
         this.postDate.shipmentDetailForms.push(obj);
+        }else{
+          this.$message.warning('请输入商品数量')
+          flag = false
+        }
+      
       });
-      let data = this.postDate;
+      if(flag){
+            let data = this.postDate;
       axios.post(shipmentInsert, data).then(data => {
         console.log(data);
         this.$message.success("添加成功");
         this.$router.go(-1);
       });
+      }
+  
     },
     deleteBtn() {},
     backBtn() {

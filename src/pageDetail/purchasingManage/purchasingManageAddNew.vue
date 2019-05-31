@@ -25,7 +25,7 @@
         <el-table-column label="商类类别" prop="name">
           <template slot-scope="scope">
             <div>
-              <span>{{scope.row.categoryId}}</span>
+              <span>{{scope.row.categoryName}}</span>
             </div>
           </template>
         </el-table-column>
@@ -85,13 +85,13 @@
         <el-table-column label="商类类别" prop="name">
           <template slot-scope="scope">
             <div>
-              <span>{{scope.row.categoryId}}</span>
+              <span>{{scope.row.categoryName}}</span>
             </div>
           </template>
         </el-table-column>
-        <el-table-column label="生产日期" prop="goodsDate"></el-table-column>
+        <!-- <el-table-column label="生产日期" prop="goodsDate"></el-table-column> -->
         <el-table-column label="单价" prop="goodsPrice"></el-table-column>
-        <el-table-column label="保质期" prop="goodsShelfLife"></el-table-column>
+        <!-- <el-table-column label="保质期" prop="goodsShelfLife"></el-table-column> -->
       </el-table>
     </div>
     <div class="btnBox">
@@ -151,6 +151,7 @@ export default {
     postBtn(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
+          let flag=true
           this.theSelection.map((v,k)=>{
             if(v.num){
               let obj={
@@ -158,14 +159,19 @@ export default {
                 goodsNumber:v.num
               }
               this.postData.purchaseDetailForms.push(obj)
+            }else {
+              this.$message.warning('请输入商品数量')
+              flag = false
             }
           })
-          console.log(this.postData)
-          axios.post(purchaseIndert,this.postData).then(data=>{
+          if(flag){
+              axios.post(purchaseIndert,this.postData).then(data=>{
            
             this.$message.success('添加成功')
              this.$router.go(-1);
           })
+          }
+        
          
         }})
       
